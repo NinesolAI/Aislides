@@ -6,3 +6,4 @@ beautifulsoup4
 python-pptx
 aiofiles
 python-multipart
+python-dotenv

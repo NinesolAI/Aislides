@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Presentation Template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .slide-nav button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .slide-counter {
+            color: #64748b;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .placeholder-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0ea5e9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0369a1;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: #3b82f6;
+        }
+
+        .chart-placeholder {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0ea5e9;
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0369a1;
+            font-weight: 600;
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .button-secondary {
+            background: white;
+            color: #3b82f6;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 2px solid #3b82f6;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-secondary:hover {
+            background: #f0f9ff;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #0369a1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 20px;
+            width: 4px;
+            height: 30px;
+            background: #cbd5e1;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .grid-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Cover Slide -->
+    <div class="slide-container active">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 via-white to-blue-50 flex flex-col items-center justify-center px-8 py-20">
+            <div class="text-center max-w-3xl">
+                <div class="mb-8">
+                    <span class="badge">Marketing Campaign</span>
+                </div>
+                <h1 class="text-6xl font-black text-gray-900 mb-6">
+                    Marketing Presentation
+                </h1>
+                <p class="text-xl text-gray-600 mb-12 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="button-primary">Get Started</button>
+                    <button class="button-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Agenda / Table of Contents -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="section-title">Agenda</h2>
+                <p class="section-subtitle">Today's presentation outline</p>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="card">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="text-3xl font-bold text-blue-600">01</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Company Overview</h3>
+                                <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="text-3xl font-bold text-blue-600">02</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Market Analysis</h3>
+                                <p class="text-gray-600 text-sm">Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="text-3xl font-bold text-blue-600">03</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Target Audience</h3>
+                                <p class="text-gray-600 text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="text-3xl font-bold text-blue-600">04</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Campaign Strategy</h3>
+                                <p class="text-gray-600 text-sm">Duis aute irure dolor in reprehenderit in voluptate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Company Overview -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="section-title">Company Overview</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <span class="text-gray-700">Lorem ipsum dolor sit amet</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <span class="text-gray-700">Consectetur adipiscing elit</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <span class="text-gray-700">Sed do eiusmod tempor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="placeholder-box h-96">
+                    [Image Placeholder]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Market Analysis / Charts -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="section-title">Market Analysis</h2>
+                <p class="section-subtitle">Data-driven insights and research findings</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <div class="chart-placeholder">
+                        [Chart Placeholder]
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Key Metric 1</h3>
+                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Key Metric 2</h3>
+                            <p class="text-gray-600 text-sm">Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Key Metric 3</h3>
+                            <p class="text-gray-600 text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-12 p-8">
+                    <h3 class="font-bold text-gray-900 mb-4">Market Insights</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Target Audience -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="section-title">Target Audience</h2>
+                <p class="section-subtitle">Audience personas and segmentation</p>
+
+                <div class="grid grid-cols-3 gap-8">
+                    <div class="grid-item">
+                        <div class="placeholder-box h-32 mb-6">
+                            [Icon]
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Audience Segment 1</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="space-y-2 text-left text-sm">
+                            <p class="text-gray-600"><strong>Age:</strong> Lorem ipsum</p>
+                            <p class="text-gray-600"><strong>Income:</strong> Lorem ipsum</p>
+                            <p class="text-gray-600"><strong>Interest:</strong> Lorem ipsum</p>
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="placeholder-box h-32 mb-6">
+                            [Icon]
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Audience Segment 2</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Sed do eiusmod tempor incididunt ut labore et dolore.
+                        </p>
+                        <div class="space-y-2 text-left text-sm">
+                            <p class="text-gray-600"><strong>Age:</strong> Lorem ipsum</p>
+                            <p class="text-gray-600"><strong>Income:</strong> Lorem ipsum</p>
+                            <p class="text-gray-600"><strong>Interest:</strong> Lorem ipsum</p>
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="placeholder-box h-32 mb-6">
+                            [Icon]
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Audience Segment 3</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ut enim ad minim veniam, quis nostrud exercitation.
+                        </p>
+                        <div class="space-y-2 text-left text-sm">
+                            <p class="text-gray-600"><strong>Age:</strong> Lorem ipsum</p>
+                            <p class="text-gray-600"><strong>Income:</strong> Lorem ipsum</p>
+                            <p class="text-gray-600"><strong>Interest:</strong> Lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Product/Service Highlights -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="section-title">Product/Service Highlights</h2>
+                <p class="section-subtitle">Key features and benefits</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-3">Feature 1</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Lorem ipsum dolor</li>
+                            <li>✓ Consectetur adipiscing</li>
+                            <li>✓ Sed do eiusmod</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-3">Feature 2</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Duis aute irure dolor</li>
+                            <li>✓ Reprehenderit in voluptate</li>
+                            <li>✓ Velit esse cillum</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-3">Feature 3</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Sunt in culpa qui officia</li>
+                            <li>✓ Deserunt mollit anim</li>
+                            <li>✓ Id est laborum</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-3">Feature 4</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Tempor incididunt ut</li>
+                            <li>✓ Labore et dolore magna</li>
+                            <li>✓ Aliqua ut enim</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="placeholder-box h-48">
+                    [Product Image Placeholder]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Marketing Strategy -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="section-title">Marketing Strategy</h2>
+                <p class="section-subtitle">Our approach to market penetration</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-4">Strategy 1</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Objective one</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Objective two</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Objective three</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-4">Strategy 2</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Sed do eiusmod tempor incididunt ut labore et dolore.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Tactic one</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Tactic two</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Tactic three</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-4">Strategy 3</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ut enim ad minim veniam, quis nostrud exercitation.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Channel one</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Channel two</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Channel three</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-gray-900 mb-4">Strategy 4</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Duis aute irure dolor in reprehenderit in voluptate.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Initiative one</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Initiative two</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Initiative three</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Campaign Timeline -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="section-title">Campaign Timeline</h2>
+                <p class="section-subtitle">Project execution roadmap</p>
+
+                <div class="space-y-8">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Phase 1: Planning</h3>
+                            <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Milestone 1</span>
+                                <span class="badge">Milestone 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Phase 2: Execution</h3>
+                            <p class="text-gray-600 text-sm mb-4">Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Milestone 3</span>
+                                <span class="badge">Milestone 4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Phase 3: Optimization</h3>
+                            <p class="text-gray-600 text-sm mb-4">Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Milestone 5</span>
+                                <span class="badge">Milestone 6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h3 class="font-bold text-gray-900 mb-2">Phase 4: Completion</h3>
+                            <p class="text-gray-600 text-sm mb-4">Duis aute irure dolor in reprehenderit in voluptate.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Milestone 7</span>
+                                <span class="badge">Milestone 8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Metrics & KPIs -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="section-title">Metrics & KPIs</h2>
+                <p class="section-subtitle">Key performance indicators and success metrics</p>
+
+                <div class="grid grid-cols-3 gap-8 mb-12">
+                    <div class="grid-item">
+                        <p class="text-4xl font-bold text-blue-600 mb-2">XXX</p>
+                        <p class="font-bold text-gray-900 mb-1">Metric 1</p>
+                        <p class="text-gray-600 text-sm">Lorem ipsum dolor</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <p class="text-4xl font-bold text-blue-600 mb-2">XXX</p>
+                        <p class="font-bold text-gray-900 mb-1">Metric 2</p>
+                        <p class="text-gray-600 text-sm">Consectetur adipiscing</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <p class="text-4xl font-bold text-blue-600 mb-2">XXX</p>
+                        <p class="font-bold text-gray-900 mb-1">Metric 3</p>
+                        <p class="text-gray-600 text-sm">Sed do eiusmod</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <p class="text-4xl font-bold text-blue-600 mb-2">XXX</p>
+                        <p class="font-bold text-gray-900 mb-1">Metric 4</p>
+                        <p class="text-gray-600 text-sm">Tempor incididunt</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <p class="text-4xl font-bold text-blue-600 mb-2">XXX</p>
+                        <p class="font-bold text-gray-900 mb-1">Metric 5</p>
+                        <p class="text-gray-600 text-sm">Ut labore et dolore</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <p class="text-4xl font-bold text-blue-600 mb-2">XXX</p>
+                        <p class="font-bold text-gray-900 mb-1">Metric 6</p>
+                        <p class="text-gray-600 text-sm">Magna aliqua</p>
+                    </div>
+                </div>
+
+                <div class="chart-placeholder">
+                    [Performance Chart Placeholder]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Closing / Contact -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 via-white to-blue-50 flex flex-col items-center justify-center px-8 py-20">
+            <div class="text-center max-w-3xl">
+                <h2 class="text-5xl font-black text-gray-900 mb-6">
+                    Thank You
+                </h2>
+                <p class="text-xl text-gray-600 mb-12 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+
+                <div class="bg-white border border-gray-200 rounded-12 p-12 mb-12">
+                    <h3 class="font-bold text-gray-900 mb-8">Contact Information</h3>
+                    <div class="grid grid-cols-3 gap-8 text-left">
+                        <div>
+                            <p class="text-gray-600 text-sm mb-2">Email</p>
+                            <p class="font-semibold text-gray-900">contact@example.com</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-2">Phone</p>
+                            <p class="font-semibold text-gray-900">+1 (555) 123-4567</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-2">Website</p>
+                            <p class="font-semibold text-gray-900">www.example.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 justify-center mb-12">
+                    <button class="button-primary">Schedule Meeting</button>
+                    <button class="button-secondary">Download Resources</button>
+                </div>
+
+                <p class="text-gray-500 text-sm">© 2024 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-nav">
+        <button onclick="previousSlide()">← Previous</button>
+        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

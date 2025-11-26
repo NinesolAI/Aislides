@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Presentation - Updated</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-nav button {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .slide-counter {
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .gradient-text-primary {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-secondary {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-tertiary {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-quaternary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .marketing-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marketing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .marketing-card:hover::before {
+            left: 100%;
+        }
+
+        .marketing-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(236, 72, 153, 0.6);
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(244, 63, 94, 0.2) 100%);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.25);
+        }
+
+        .marketing-card.card-cyan {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(8, 145, 178, 0.1) 100%);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .marketing-card.card-cyan:hover {
+            border-color: rgba(6, 182, 212, 0.6);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(8, 145, 178, 0.2) 100%);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.25);
+        }
+
+        .marketing-card.card-amber {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .marketing-card.card-amber:hover {
+            border-color: rgba(251, 191, 36, 0.6);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.25);
+        }
+
+        .marketing-card.card-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .marketing-card.card-green:hover {
+            border-color: rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.25);
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            height: 200px;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 60px;
+            background: linear-gradient(180deg, #ec4899 0%, #f43f5e 100%);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ec4899;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.15);
+        }
+
+        .bar.bar-cyan {
+            background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%);
+        }
+
+        .bar.bar-cyan::after {
+            color: #06b6d4;
+        }
+
+        .bar.bar-amber {
+            background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .bar.bar-amber::after {
+            color: #fbbf24;
+        }
+
+        .bar.bar-green {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+        }
+
+        .bar.bar-green::after {
+            color: #10b981;
+        }
+
+        .audience-profile {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .audience-profile:hover {
+            transform: translateY(-8px);
+            border-color: rgba(236, 72, 153, 0.6);
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+        }
+
+        .audience-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 16px;
+        }
+
+        .kpi-metric {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-metric:hover {
+            transform: translateY(-8px);
+            border-color: rgba(236, 72, 153, 0.6);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.25);
+        }
+
+        .kpi-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            border-radius: 50%;
+            border: 3px solid #0f172a;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.6) 0%, transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+
+        .feature-highlight {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
+            border-left: 4px solid #ec4899;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-highlight:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(244, 63, 94, 0.2) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.4);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            border-color: rgba(236, 72, 153, 0.6);
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(244, 63, 94, 0.3) 100%);
+        }
+
+        .badge.badge-cyan {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(8, 145, 178, 0.2) 100%);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .badge.badge-cyan:hover {
+            border-color: rgba(6, 182, 212, 0.6);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(8, 145, 178, 0.3) 100%);
+        }
+
+        .badge.badge-amber {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        .badge.badge-amber:hover {
+            border-color: rgba(251, 191, 36, 0.6);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.3) 0%, rgba(245, 158, 11, 0.3) 100%);
+        }
+
+        .badge.badge-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .badge.badge-green:hover {
+            border-color: rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.3) 100%);
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(244, 63, 94, 0.15) 100%);
+            border: 2px dashed rgba(236, 72, 153, 0.5);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            padding: 40px;
+            text-align: center;
+            min-height: 250px;
+        }
+
+        .text-light {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Cover Slide -->
+    <div class="slide-container active">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-pink-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            
+            <div class="relative z-10 text-center">
+                <div class="mb-6">
+                    <div class="inline-block px-6 py-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white text-sm font-semibold mb-8">
+                        🚀 Marketing Campaign 2025
+                    </div>
+                </div>
+                <h1 class="text-7xl font-black mb-6 gradient-text-primary">
+                    Digital Revolution
+                </h1>
+                <p class="text-2xl text-gray-300 mb-12 max-w-2xl">
+                    Unleash Your Brand's Full Potential with Data-Driven Marketing Excellence
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="button-primary">Discover Strategy</button>
+                    <button class="button-secondary">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Agenda / Table of Contents -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Agenda</h2>
+                <p class="text-muted mb-12 text-lg">Your roadmap to marketing success</p>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="marketing-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">📊</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Company Overview</h3>
+                                <p class="text-muted">Understanding our brand essence</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="marketing-card card-cyan">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">🎯</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Market Analysis</h3>
+                                <p class="text-muted">Data-driven market insights</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="marketing-card card-amber">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">👥</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Target Audience</h3>
+                                <p class="text-muted">Persona development & segmentation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="marketing-card card-green">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">🎨</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Campaign Strategy</h3>
+                                <p class="text-muted">Creative execution & tactics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Company Overview -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Left Side: Content -->
+                <div>
+                    <h2 class="text-5xl font-black mb-8 gradient-text-primary">Brand Story</h2>
+                    <p class="text-light mb-6 leading-relaxed text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. We are pioneering the future of digital marketing with innovative solutions that transform businesses and captivate audiences.
+                    </p>
+                    <p class="text-light mb-8 leading-relaxed text-lg">
+                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Our mission is to empower brands to connect authentically with their customers.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></div>
+                            <span class="text-light">10+ years of marketing excellence</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></div>
+                            <span class="text-light">500+ successful campaigns</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></div>
+                            <span class="text-light">Global reach across 50+ countries</span>
+                        </div>
+                    </div>
+                    <button class="button-primary">Learn Our Story</button>
+                </div>
+
+                <!-- Right Side: Image Placeholder -->
+                <div class="image-placeholder">
+                    <div class="text-6xl">🎬</div>
+                    <p class="text-light font-semibold">Brand Image</p>
+                    <p class="text-muted text-sm">Replace with brand visual</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Market Analysis / Research Data -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Market Analysis</h2>
+                <p class="text-muted mb-12 text-lg">Comprehensive market research & insights</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Chart -->
+                    <div class="marketing-card">
+                        <h3 class="text-xl font-bold text-light mb-8">Market Growth Trends</h3>
+                        <div class="chart-bar">
+                            <div class="bar" data-value="65%"></div>
+                            <div class="bar bar-cyan" data-value="78%"></div>
+                            <div class="bar bar-amber" data-value="89%"></div>
+                            <div class="bar bar-green" data-value="95%"></div>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-muted">
+                            <span>Q1</span>
+                            <span>Q2</span>
+                            <span>Q3</span>
+                            <span>Q4</span>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="space-y-4">
+                        <div class="kpi-metric">
+                            <div class="kpi-number">$2.5B</div>
+                            <p class="text-muted mt-4 mb-2">Market Opportunity</p>
+                            <p class="text-xs text-pink-400">↑ 35% YoY</p>
+                        </div>
+                        <div class="kpi-metric">
+                            <div class="kpi-number">45M</div>
+                            <p class="text-muted mt-4 mb-2">Target Audience</p>
+                            <p class="text-xs text-pink-400">Active Users</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Insights -->
+                <div class="bg-gradient-to-r from-pink-500/5 to-rose-500/5 border border-pink-500/20 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-light mb-4">Key Market Insights</h3>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <p class="text-light font-semibold mb-2">Digital Adoption</p>
+                            <p class="text-muted text-sm">78% of consumers prefer digital-first brands</p>
+                        </div>
+                        <div>
+                            <p class="text-light font-semibold mb-2">Content Engagement</p>
+                            <p class="text-muted text-sm">Video content drives 80% more engagement</p>
+                        </div>
+                        <div>
+                            <p class="text-light font-semibold mb-2">Social Commerce</p>
+                            <p class="text-muted text-sm">Social platforms account for 45% of sales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Target Audience Profiles -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Target Audience</h2>
+                <p class="text-muted mb-12 text-lg">Detailed persona profiles & segmentation</p>
+
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- Persona 1 -->
+                    <div class="audience-profile">
+                        <div class="audience-icon">👔</div>
+                        <h3 class="text-xl font-bold text-light mb-2">Enterprise Leaders</h3>
+                        <p class="text-muted text-sm mb-4">C-level executives and decision makers</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-muted">Age:</span>
+                                <span class="text-light font-semibold">35-55</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Income:</span>
+                                <span class="text-light font-semibold">$150K+</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Tech Savvy:</span>
+                                <span class="text-light font-semibold">High</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Persona 2 -->
+                    <div class="audience-profile">
+                        <div class="audience-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">🎯</div>
+                        <h3 class="text-xl font-bold text-light mb-2">Marketing Pros</h3>
+                        <p class="text-muted text-sm mb-4">Marketing managers and specialists</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-muted">Age:</span>
+                                <span class="text-light font-semibold">28-45</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Income:</span>
+                                <span class="text-light font-semibold">$80K-$120K</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Tech Savvy:</span>
+                                <span class="text-light font-semibold">Very High</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Persona 3 -->
+                    <div class="audience-profile">
+                        <div class="audience-icon" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">🚀</div>
+                        <h3 class="text-xl font-bold text-light mb-2">Startup Founders</h3>
+                        <p class="text-muted text-sm mb-4">Entrepreneurs and innovators</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-muted">Age:</span>
+                                <span class="text-light font-semibold">25-40</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Income:</span>
+                                <span class="text-light font-semibold">Variable</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Tech Savvy:</span>
+                                <span class="text-light font-semibold">Extreme</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audience Insights -->
+                <div class="mt-12 bg-gradient-to-r from-pink-500/5 to-rose-500/5 border border-pink-500/20 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-light mb-6">Audience Insights</h3>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-light font-semibold mb-2">Primary Channels</p>
+                            <ul class="space-y-2 text-muted text-sm">
+                                <li>✓ LinkedIn & Professional Networks</li>
+                                <li>✓ Industry Events & Webinars</li>
+                                <li>✓ Email Marketing Campaigns</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-light font-semibold mb-2">Pain Points</p>
+                            <ul class="space-y-2 text-muted text-sm">
+                                <li>✓ Time management & efficiency</li>
+                                <li>✓ ROI measurement & analytics</li>
+                                <li>✓ Market competition & growth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Product/Service Highlights -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Product Highlights</h2>
+                <p class="text-muted mb-12 text-lg">What sets us apart from the competition</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Feature 1 -->
+                    <div class="feature-highlight">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">⚡</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-light mb-2">Lightning Fast Performance</h4>
+                                <p class="text-muted">Optimized for speed with sub-second response times</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-highlight" style="border-left-color: #06b6d4;">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">🔒</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-light mb-2">Enterprise Security</h4>
+                                <p class="text-muted">Bank-level encryption and compliance standards</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-highlight" style="border-left-color: #fbbf24;">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">🎨</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-light mb-2">Fully Customizable</h4>
+                                <p class="text-muted">White-label solutions with unlimited customization</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-highlight" style="border-left-color: #10b981;">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">🤝</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-light mb-2">24/7 Support</h4>
+                                <p class="text-muted">Dedicated support team available round-the-clock</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Image Placeholder -->
+                <div class="image-placeholder">
+                    <div class="text-6xl">📦</div>
+                    <p class="text-light font-semibold">Product Visual</p>
+                    <p class="text-muted text-sm">Replace with product screenshots or demo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Marketing Strategy -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Marketing Strategy</h2>
+                <p class="text-muted mb-12 text-lg">Our comprehensive approach to market domination</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Strategy 1 -->
+                    <div class="marketing-card">
+                        <div class="text-4xl mb-4">📱</div>
+                        <h3 class="text-2xl font-bold text-light mb-4">Digital Marketing</h3>
+                        <ul class="space-y-3 text-muted">
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-pink-500 rounded-full"></span>
+                                Social Media Campaigns
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-pink-500 rounded-full"></span>
+                                SEO & Content Marketing
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-pink-500 rounded-full"></span>
+                                Paid Advertising
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Strategy 2 -->
+                    <div class="marketing-card card-cyan">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="text-2xl font-bold text-light mb-4">Targeted Outreach</h3>
+                        <ul class="space-y-3 text-muted">
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                                Email Marketing
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                                Direct Sales Outreach
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                                Partnership Programs
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Strategy 3 -->
+                    <div class="marketing-card card-amber">
+                        <div class="text-4xl mb-4">📊</div>
+                        <h3 class="text-2xl font-bold text-light mb-4">Content Strategy</h3>
+                        <ul class="space-y-3 text-muted">
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                                Blog Posts & Whitepapers
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                                Video Marketing
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                                Webinars & Events
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Strategy 4 -->
+                    <div class="marketing-card card-green">
+                        <div class="text-4xl mb-4">🚀</div>
+                        <h3 class="text-2xl font-bold text-light mb-4">Growth Acceleration</h3>
+                        <ul class="space-y-3 text-muted">
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                Influencer Partnerships
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                Referral Programs
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                Community Building
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Campaign Timeline -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Campaign Timeline</h2>
+                <p class="text-muted mb-12 text-lg">Execution roadmap for 2025</p>
+
+                <div class="space-y-8">
+                    <!-- Q1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                        <div class="marketing-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q1 2025 - Foundation</h3>
+                            <p class="text-muted mb-4">Building brand awareness and market presence</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Brand Audit</span>
+                                <span class="badge badge-cyan">Content Planning</span>
+                                <span class="badge badge-amber">Social Setup</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                        <div class="marketing-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q2 2025 - Launch</h3>
+                            <p class="text-muted mb-4">Campaign launch and initial engagement push</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Campaign Launch</span>
+                                <span class="badge badge-cyan">Paid Ads</span>
+                                <span class="badge badge-amber">PR Push</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                        <div class="marketing-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q3 2025 - Optimization</h3>
+                            <p class="text-muted mb-4">Analyzing results and optimizing campaigns</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">A/B Testing</span>
+                                <span class="badge badge-cyan">Performance Review</span>
+                                <span class="badge badge-amber">Refinement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="marketing-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q4 2025 - Scale</h3>
+                            <p class="text-muted mb-4">Scaling successful initiatives and planning 2026</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Scaling</span>
+                                <span class="badge badge-cyan">Year Review</span>
+                                <span class="badge badge-amber">2026 Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Metrics & KPIs -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text-primary">Metrics & KPIs</h2>
+                <p class="text-muted mb-12 text-lg">Measuring success through data-driven insights</p>
+
+                <div class="grid grid-cols-2 gap-6 mb-12">
+                    <!-- KPI 1 -->
+                    <div class="kpi-metric">
+                        <div class="kpi-number">2.5M</div>
+                        <p class="text-muted mt-4 mb-2">Total Impressions</p>
+                        <div class="text-sm text-green-400 font-semibold">↑ 45% vs Last Quarter</div>
+                    </div>
+
+                    <!-- KPI 2 -->
+                    <div class="kpi-metric">
+                        <div class="kpi-number">8.3%</div>
+                        <p class="text-muted mt-4 mb-2">Engagement Rate</p>
+                        <div class="text-sm text-green-400 font-semibold">↑ 12% vs Last Quarter</div>
+                    </div>
+
+                    <!-- KPI 3 -->
+                    <div class="kpi-metric">
+                        <div class="kpi-number">$4.2M</div>
+                        <p class="text-muted mt-4 mb-2">Revenue Generated</p>
+                        <div class="text-sm text-green-400 font-semibold">↑ 67% vs Last Quarter</div>
+                    </div>
+
+                    <!-- KPI 4 -->
+                    <div class="kpi-metric">
+                        <div class="kpi-number">3.2x</div>
+                        <p class="text-muted mt-4 mb-2">Return on Investment</p>
+                        <div class="text-sm text-green-400 font-semibold">↑ 28% vs Last Quarter</div>
+                    </div>
+
+                    <!-- KPI 5 -->
+                    <div class="kpi-metric">
+                        <div class="kpi-number">12K</div>
+                        <p class="text-muted mt-4 mb-2">New Customers</p>
+                        <div class="text-sm text-green-400 font-semibold">↑ 34% vs Last Quarter</div>
+                    </div>
+
+                    <!-- KPI 6 -->
+                    <div class="kpi-metric">
+                        <div class="kpi-number">94%</div>
+                        <p class="text-muted mt-4 mb-2">Customer Retention</p>
+                        <div class="text-sm text-green-400 font-semibold">↑ 8% vs Last Quarter</div>
+                    </div>
+                </div>
+
+                <!-- Performance Dashboard -->
+                <div class="bg-gradient-to-r from-pink-500/5 to-rose-500/5 border border-pink-500/20 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-light mb-6">Performance Dashboard</h3>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <p class="text-muted text-sm mb-2">Conversion Rate</p>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-pink-500 to-rose-500 h-2 rounded-full" style="width: 78%;"></div>
+                            </div>
+                            <p class="text-light font-semibold mt-2">7.8%</p>
+                        </div>
+                        <div>
+                            <p class="text-muted text-sm mb-2">Brand Awareness</p>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 85%;"></div>
+                            </div>
+                            <p class="text-light font-semibold mt-2">85%</p>
+                        </div>
+                        <div>
+                            <p class="text-muted text-sm mb-2">Market Penetration</p>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full" style="width: 62%;"></div>
+                            </div>
+                            <p class="text-light font-semibold mt-2">6.2%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Closing / Contact -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-pink-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+
+            <div class="relative z-10 text-center max-w-3xl">
+                <h2 class="text-6xl font-black mb-6 gradient-text-primary">Ready to Transform?</h2>
+                <p class="text-2xl text-gray-300 mb-12">
+                    Let's work together to achieve your marketing goals and drive unprecedented growth
+                </p>
+
+                <div class="bg-gradient-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/30 rounded-2xl p-12 mb-12">
+                    <h3 class="text-2xl font-bold text-light mb-8">Get In Touch</h3>
+                    <div class="grid grid-cols-3 gap-8 text-left">
+                        <div>
+                            <p class="text-muted text-sm mb-2">Email</p>
+                            <p class="text-light font-semibold">hello@company.com</p>
+                        </div>
+                        <div>
+                            <p class="text-muted text-sm mb-2">Phone</p>
+                            <p class="text-light font-semibold">+1 (555) 123-4567</p>
+                        </div>
+                        <div>
+                            <p class="text-muted text-sm mb-2">Website</p>
+                            <p class="text-light font-semibold">www.company.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 justify-center mb-12">
+                    <button class="button-primary">Schedule Demo</button>
+                    <button class="button-secondary">Download Brochure</button>
+                </div>
+
+                <div class="flex justify-center gap-6">
+                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-pink-500/20 to-rose-500/20 border border-pink-500/30 rounded-full flex items-center justify-center text-light hover:border-pink-500/60 transition">
+                        f
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-pink-500/20 to-rose-500/20 border border-pink-500/30 rounded-full flex items-center justify-center text-light hover:border-pink-500/60 transition">
+                        in
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-pink-500/20 to-rose-500/20 border border-pink-500/30 rounded-full flex items-center justify-center text-light hover:border-pink-500/60 transition">
+                        𝕏
+                    </a>
+                </div>
+
+                <p class="text-gray-500 text-sm mt-12">© 2025 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-nav">
+        <button onclick="previousSlide()">← Previous</button>
+        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

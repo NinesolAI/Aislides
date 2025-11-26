@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(10, 14, 39, 0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-nav button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .slide-counter {
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
+        }
+
+        .project-image-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        .testimonial-quote {
+            font-size: 24px;
+            color: rgba(102, 126, 234, 0.6);
+            margin-bottom: 12px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            border: 3px solid #0a0e27;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 20px;
+            width: 4px;
+            height: 30px;
+            background: rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-box:hover {
+            border-color: rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            border-color: rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Cover Slide -->
+    <div class="slide-container active">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            
+            <div class="relative z-10 text-center">
+                <div class="mb-6">
+                    <div class="inline-block px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white text-sm font-semibold mb-8">
+                        Portfolio 2025
+                    </div>
+                </div>
+                <h1 class="text-7xl font-black mb-6 gradient-text">
+                    Creative Designer
+                </h1>
+                <p class="text-2xl text-gray-300 mb-12 max-w-2xl">
+                    Crafting Digital Experiences & Building Exceptional Products
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="button-primary">View My Work</button>
+                    <button class="button-secondary">Get In Touch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: About Me / Bio -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Left Side: Image Placeholder -->
+                <div class="flex flex-col gap-6">
+                    <div class="w-full h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-2 border-dashed border-purple-500/50 rounded-2xl flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">👤</div>
+                            <p class="text-gray-400">Profile Photo Placeholder</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Content -->
+                <div>
+                    <h2 class="text-5xl font-black mb-6 gradient-text">About Me</h2>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+                            <span class="text-gray-300">8+ years of design experience</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+                            <span class="text-gray-300">Worked with 50+ global brands</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+                            <span class="text-gray-300">Award-winning designer and innovator</span>
+                        </div>
+                    </div>
+                    <button class="button-primary">Download Resume</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Skills / Expertise -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Skills & Expertise</h2>
+                <p class="text-gray-400 mb-12 text-lg">Proficiency in key areas and technical competencies</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Skill 1 -->
+                    <div class="skill-card">
+                        <h3 class="text-xl font-bold text-white mb-2">UI/UX Design</h3>
+                        <p class="text-gray-400 text-sm mb-4">Creating intuitive and beautiful user interfaces</p>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 95%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">95% Proficiency</p>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div class="skill-card">
+                        <h3 class="text-xl font-bold text-white mb-2">Web Development</h3>
+                        <p class="text-gray-400 text-sm mb-4">HTML, CSS, JavaScript, and modern frameworks</p>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">85% Proficiency</p>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div class="skill-card">
+                        <h3 class="text-xl font-bold text-white mb-2">Branding</h3>
+                        <p class="text-gray-400 text-sm mb-4">Logo design and brand identity development</p>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 90%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">90% Proficiency</p>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div class="skill-card">
+                        <h3 class="text-xl font-bold text-white mb-2">Motion Graphics</h3>
+                        <p class="text-gray-400 text-sm mb-4">Animation and interactive experiences</p>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 80%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">80% Proficiency</p>
+                    </div>
+                </div>
+
+                <!-- Tools & Technologies -->
+                <div class="bg-gradient-to-r from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Tools & Technologies</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="badge">Figma</span>
+                        <span class="badge">Adobe XD</span>
+                        <span class="badge">Photoshop</span>
+                        <span class="badge">Illustrator</span>
+                        <span class="badge">After Effects</span>
+                        <span class="badge">HTML/CSS</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">React</span>
+                        <span class="badge">Vue.js</span>
+                        <span class="badge">Tailwind CSS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Project 1 Showcase -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Project Image -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-text">
+                            <div class="text-5xl mb-3">🎨</div>
+                            <p class="text-gray-400">Project Screenshot</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Details -->
+                <div>
+                    <h2 class="text-5xl font-black mb-4 gradient-text">Project One</h2>
+                    <p class="text-gray-400 mb-2 text-sm">E-Commerce Platform Redesign</p>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. This project involved complete redesign of user interface and experience.
+                    </p>
+                    <div class="mb-6">
+                        <p class="text-gray-400 text-sm mb-3">Technologies Used:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge">Figma</span>
+                            <span class="badge">React</span>
+                            <span class="badge">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-gray-400 text-sm mb-3">Results:</p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✓ 40% increase in conversion rate</li>
+                            <li>✓ 60% improvement in user engagement</li>
+                            <li>✓ Award-winning design recognition</li>
+                        </ul>
+                    </div>
+                    <button class="button-primary">View Case Study</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Project 2 Showcase -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Project Details -->
+                <div>
+                    <h2 class="text-5xl font-black mb-4 gradient-text-2">Project Two</h2>
+                    <p class="text-gray-400 mb-2 text-sm">Mobile App Development</p>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. This mobile application was designed for iOS and Android platforms.
+                    </p>
+                    <div class="mb-6">
+                        <p class="text-gray-400 text-sm mb-3">Technologies Used:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge">Adobe XD</span>
+                            <span class="badge">Swift</span>
+                            <span class="badge">Kotlin</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-gray-400 text-sm mb-3">Results:</p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✓ 100K+ downloads in first month</li>
+                            <li>✓ 4.8 star rating on app stores</li>
+                            <li>✓ Featured in tech publications</li>
+                        </ul>
+                    </div>
+                    <button class="button-primary">View Case Study</button>
+                </div>
+
+                <!-- Project Image -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-text">
+                            <div class="text-5xl mb-3">📱</div>
+                            <p class="text-gray-400">App Screenshot</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Project 3 Showcase -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Project Image -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-text">
+                            <div class="text-5xl mb-3">🌐</div>
+                            <p class="text-gray-400">Website Screenshot</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Details -->
+                <div>
+                    <h2 class="text-5xl font-black mb-4 gradient-text-3">Project Three</h2>
+                    <p class="text-gray-400 mb-2 text-sm">Corporate Website Redesign</p>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Complete redesign of corporate website with modern design principles and best practices.
+                    </p>
+                    <div class="mb-6">
+                        <p class="text-gray-400 text-sm mb-3">Technologies Used:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge">Figma</span>
+                            <span class="badge">Next.js</span>
+                            <span class="badge">Vercel</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-gray-400 text-sm mb-3">Results:</p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✓ 3x improvement in page load speed</li>
+                            <li>✓ 85% increase in lead generation</li>
+                            <li>✓ Mobile-first responsive design</li>
+                        </ul>
+                    </div>
+                    <button class="button-primary">View Case Study</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Project 4 Showcase -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Project Details -->
+                <div>
+                    <h2 class="text-5xl font-black mb-4 gradient-text">Project Four</h2>
+                    <p class="text-gray-400 mb-2 text-sm">SaaS Dashboard Design</p>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Designed comprehensive dashboard for data analytics and business intelligence platform.
+                    </p>
+                    <div class="mb-6">
+                        <p class="text-gray-400 text-sm mb-3">Technologies Used:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge">Figma</span>
+                            <span class="badge">Vue.js</span>
+                            <span class="badge">D3.js</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-gray-400 text-sm mb-3">Results:</p>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✓ 50% reduction in user support tickets</li>
+                            <li>✓ 90% user satisfaction score</li>
+                            <li>✓ Enterprise client adoption</li>
+                        </ul>
+                    </div>
+                    <button class="button-primary">View Case Study</button>
+                </div>
+
+                <!-- Project Image -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-text">
+                            <div class="text-5xl mb-3">📊</div>
+                            <p class="text-gray-400">Dashboard Screenshot</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Testimonials / Feedback -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Testimonials</h2>
+                <p class="text-gray-400 mb-12 text-lg">What clients say about my work</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Working with this designer was an absolute pleasure. Their attention to detail and creative solutions exceeded our expectations.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">JD</div>
+                            <div>
+                                <p class="font-semibold text-white">John Doe</p>
+                                <p class="text-xs text-gray-400">CEO, Tech Startup</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. The design transformed our brand completely. We saw immediate improvements in customer engagement and sales.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold">SM</div>
+                            <div>
+                                <p class="font-semibold text-white">Sarah Miller</p>
+                                <p class="text-xs text-gray-400">Marketing Director</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Exceptional talent and professionalism. I would highly recommend to anyone looking for top-tier design work.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold">MC</div>
+                            <div>
+                                <p class="font-semibold text-white">Michael Chen</p>
+                                <p class="text-xs text-gray-400">Product Manager</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt. Professional, creative, and results-driven. Delivered exactly what we needed and more.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold">EJ</div>
+                            <div>
+                                <p class="font-semibold text-white">Emma Johnson</p>
+                                <p class="text-xs text-gray-400">Founder, Design Agency</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Resume / Timeline -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Experience & Timeline</h2>
+                <p class="text-gray-400 mb-12 text-lg">Professional journey and career milestones</p>
+
+                <div class="space-y-8">
+                    <!-- Experience 1 -->
+                    <div class="timeline-item">
+                        <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-lg p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Senior Design Lead</h3>
+                            <p class="text-gray-400 mb-3">Tech Company Inc. | 2022 - Present</p>
+                            <p class="text-gray-300">Led design team of 5+ designers. Responsible for product design strategy, user research, and design system development.</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="timeline-item">
+                        <div class="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-lg p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Product Designer</h3>
+                            <p class="text-gray-400 mb-3">Digital Solutions LLC | 2019 - 2022</p>
+                            <p class="text-gray-300">Designed and shipped 15+ digital products. Collaborated with engineering and product teams to deliver user-centric solutions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 -->
+                    <div class="timeline-item">
+                        <div class="bg-gradient-to-r from-pink-500/10 to-red-500/10 border border-pink-500/30 rounded-lg p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">UI/UX Designer</h3>
+                            <p class="text-gray-400 mb-3">Creative Agency Co. | 2017 - 2019</p>
+                            <p class="text-gray-300">Designed interfaces for 30+ clients across various industries. Specialized in e-commerce and SaaS platforms.</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience 4 -->
+                    <div class="timeline-item">
+                        <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Junior Designer</h3>
+                            <p class="text-gray-400 mb-3">Design Studio | 2015 - 2017</p>
+                            <p class="text-gray-300">Started career in graphic design. Transitioned to digital design and learned web development fundamentals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Contact / Social Links -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+
+            <div class="relative z-10 text-center max-w-3xl">
+                <h2 class="text-6xl font-black mb-6 gradient-text">Let's Connect</h2>
+                <p class="text-2xl text-gray-300 mb-12">
+                    I'm always interested in hearing about new projects and opportunities
+                </p>
+
+                <div class="grid grid-cols-3 gap-8 mb-12">
+                    <div class="contact-box">
+                        <p class="text-gray-400 text-sm mb-2">Email</p>
+                        <p class="text-white font-semibold text-lg">hello@designer.com</p>
+                    </div>
+                    <div class="contact-box">
+                        <p class="text-gray-400 text-sm mb-2">Phone</p>
+                        <p class="text-white font-semibold text-lg">+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contact-box">
+                        <p class="text-gray-400 text-sm mb-2">Location</p>
+                        <p class="text-white font-semibold text-lg">San Francisco, CA</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-6 mb-12">
+                    <button class="button-primary">Send Email</button>
+                    <button class="button-secondary">Schedule Call</button>
+                </div>
+
+                <div>
+                    <p class="text-gray-400 mb-6">Follow me on social media</p>
+                    <div class="flex justify-center gap-4">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">𝕏</a>
+                        <a href="#" class="social-link">▶</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+
+                <p class="text-gray-500 text-sm mt-12">© 2024 Your Name. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-nav">
+        <button onclick="previousSlide()">← Previous</button>
+        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

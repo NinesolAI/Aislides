@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .slide-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(10, 14, 39, 0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .slide-nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-nav button {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .slide-counter {
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        body.light-mode .slide-counter {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-3 {
+            background: linear-gradient(135deg, #ff006e 0%, #ff0066 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tech-card:hover::before {
+            left: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.6);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        body.light-mode .tech-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        body.light-mode .tech-card:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 153, 255, 0.15) 100%);
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #00ff88;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        body.light-mode .code-block {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+            color: #0099ff;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            height: 150px;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 50px;
+            background: linear-gradient(180deg, #00d4ff 0%, #0099ff 100%);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00d4ff;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.1);
+        }
+
+        .bar.bar-2 {
+            background: linear-gradient(180deg, #00ff88 0%, #00d4ff 100%);
+        }
+
+        .bar.bar-2::after {
+            color: #00ff88;
+        }
+
+        .bar.bar-3 {
+            background: linear-gradient(180deg, #ff006e 0%, #ff0066 100%);
+        }
+
+        .bar.bar-3::after {
+            color: #ff006e;
+        }
+
+        .bar.bar-4 {
+            background: linear-gradient(180deg, #ffd60a 0%, #ffc300 100%);
+        }
+
+        .bar.bar-4::after {
+            color: #ffd60a;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border-left: 3px solid #00ff88;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        body.light-mode .feature-item {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border-left-color: #00d4ff;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            border-radius: 50%;
+            border: 3px solid #0a0e27;
+        }
+
+        body.light-mode .timeline-item::before {
+            border-color: #f8fafc;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 20px;
+            width: 4px;
+            height: 30px;
+            background: rgba(0, 212, 255, 0.3);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(255, 0, 102, 0.1) 100%);
+            border: 1px solid rgba(255, 0, 110, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-box:hover {
+            border-color: rgba(255, 0, 110, 0.6);
+            box-shadow: 0 8px 20px rgba(255, 0, 110, 0.2);
+        }
+
+        .solution-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .solution-box:hover {
+            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: #00d4ff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: 2px solid #00d4ff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        body.light-mode .button-secondary {
+            color: #0099ff;
+            border-color: #0099ff;
+        }
+
+        body.light-mode .button-secondary:hover {
+            background: rgba(0, 153, 255, 0.1);
+        }
+
+        .diagram-placeholder {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+            border: 2px dashed rgba(0, 212, 255, 0.5);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            padding: 40px;
+            text-align: center;
+            min-height: 250px;
+        }
+
+        body.light-mode .diagram-placeholder {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            border-color: rgba(0, 212, 255, 0.6);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
+        }
+
+        body.light-mode .badge {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+            color: #0099ff;
+        }
+
+        .text-light {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.light-mode .text-light {
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        body.light-mode .text-muted {
+            color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+
+    <!-- Slide 1: Cover Slide -->
+    <div class="slide-container active">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            
+            <div class="relative z-10 text-center">
+                <div class="mb-6">
+                    <div class="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white text-sm font-semibold mb-8">
+                        Next Generation Technology
+                    </div>
+                </div>
+                <h1 class="text-7xl font-black mb-6 gradient-text">
+                    AI-Powered Innovation
+                </h1>
+                <p class="text-2xl text-gray-300 mb-12 max-w-2xl">
+                    Transforming Industries with Cutting-Edge Technology & Machine Learning
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="button-primary">Explore Technology</button>
+                    <button class="button-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Agenda / Outline -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Agenda</h2>
+                <p class="text-muted mb-12 text-lg">Overview of today's presentation</p>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="tech-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black gradient-text">01</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Company Overview</h3>
+                                <p class="text-muted">Understanding our vision and mission</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black gradient-text-2">02</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Industry Trends</h3>
+                                <p class="text-muted">Market insights and data analysis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black gradient-text-3">03</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Product Features</h3>
+                                <p class="text-muted">Key capabilities and specifications</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black gradient-text">04</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-light mb-2">Roadmap & Vision</h3>
+                                <p class="text-muted">Future plans and innovation timeline</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Tech Company / Product Overview -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Left Side: Content -->
+                <div>
+                    <h2 class="text-5xl font-black mb-6 gradient-text">About Our Technology</h2>
+                    <p class="text-light mb-6 leading-relaxed text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our platform leverages advanced machine learning algorithms and cloud infrastructure to deliver unprecedented performance and scalability.
+                    </p>
+                    <p class="text-light mb-8 leading-relaxed text-lg">
+                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We are committed to pushing the boundaries of what's possible in technology innovation.
+                    </p>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+                            <span class="text-light">Enterprise-grade security and compliance</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+                            <span class="text-light">99.99% uptime guarantee with SLA</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+                            <span class="text-light">Global infrastructure with 50+ data centers</span>
+                        </div>
+                    </div>
+                    <button class="button-primary">Discover More</button>
+                </div>
+
+                <!-- Right Side: Image Placeholder -->
+                <div class="diagram-placeholder">
+                    <div class="text-6xl">💻</div>
+                    <p class="text-light font-semibold">Product Image Placeholder</p>
+                    <p class="text-muted text-sm">Replace with product screenshot or demo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Industry Trends & Insights -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Industry Trends & Insights</h2>
+                <p class="text-muted mb-12 text-lg">Market analysis and growth projections</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Chart -->
+                    <div class="tech-card">
+                        <h3 class="text-xl font-bold text-light mb-8">Market Growth Trajectory</h3>
+                        <div class="chart-bar">
+                            <div class="bar" data-value="45%"></div>
+                            <div class="bar bar-2" data-value="62%"></div>
+                            <div class="bar bar-3" data-value="78%"></div>
+                            <div class="bar bar-4" data-value="95%"></div>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-muted">
+                            <span>2021</span>
+                            <span>2022</span>
+                            <span>2023</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="space-y-4">
+                        <div class="stat-box">
+                            <div class="stat-number">$2.5T</div>
+                            <p class="text-muted mt-4 mb-2">Global Market Size</p>
+                            <p class="text-xs text-cyan-400">↑ 35% YoY Growth</p>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">500M+</div>
+                            <p class="text-muted mt-4 mb-2">Active Users Worldwide</p>
+                            <p class="text-xs text-cyan-400">↑ 42% YoY Growth</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Insights -->
+                <div class="bg-gradient-to-r from-cyan-500/5 to-blue-500/5 border border-cyan-500/20 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-light mb-4">Key Market Insights</h3>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <p class="text-light font-semibold mb-2">AI Adoption</p>
+                            <p class="text-muted text-sm">78% of enterprises deploying AI solutions</p>
+                        </div>
+                        <div>
+                            <p class="text-light font-semibold mb-2">Cloud Migration</p>
+                            <p class="text-muted text-sm">92% workloads moving to cloud platforms</p>
+                        </div>
+                        <div>
+                            <p class="text-light font-semibold mb-2">Data Growth</p>
+                            <p class="text-muted text-sm">Data volume doubling every 2 years</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Product Features / Specifications -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Product Features & Specifications</h2>
+                <p class="text-muted mb-12 text-lg">Powerful capabilities designed for enterprise</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Feature 1 -->
+                    <div class="feature-item">
+                        <div class="flex items-start gap-4">
+                            <div class="text-2xl">⚡</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-light mb-2">Ultra-Fast Processing</h4>
+                                <p class="text-muted text-sm">Sub-millisecond latency with GPU acceleration</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-item">
+                        <div class="flex items-start gap-4">
+                            <div class="text-2xl">🔒</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-light mb-2">Military-Grade Security</h4>
+                                <p class="text-muted text-sm">End-to-end encryption and zero-trust architecture</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-item">
+                        <div class="flex items-start gap-4">
+                            <div class="text-2xl">📊</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-light mb-2">Advanced Analytics</h4>
+                                <p class="text-muted text-sm">Real-time insights with predictive analytics</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-item">
+                        <div class="flex items-start gap-4">
+                            <div class="text-2xl">🌐</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-light mb-2">Global Scalability</h4>
+                                <p class="text-muted text-sm">Handles billions of transactions per second</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Specifications -->
+                <div class="tech-card">
+                    <h3 class="text-xl font-bold text-light mb-4">Technical Specifications</h3>
+                    <div class="code-block">
+{
+  "platform": "Cloud-Native",
+  "architecture": "Microservices",
+  "language": "Python, Go, Rust",
+  "database": "PostgreSQL, MongoDB",
+  "api": "REST, GraphQL, gRPC",
+  "deployment": "Kubernetes, Docker"
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Architecture / Workflow Diagrams -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">System Architecture</h2>
+                <p class="text-muted mb-12 text-lg">Scalable and resilient infrastructure design</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Architecture Diagram -->
+                    <div class="diagram-placeholder">
+                        <div class="text-5xl">🏗️</div>
+                        <p class="text-light font-semibold">Architecture Diagram</p>
+                        <p class="text-muted text-sm">System design and components</p>
+                    </div>
+
+                    <!-- Workflow Diagram -->
+                    <div class="diagram-placeholder">
+                        <div class="text-5xl">🔄</div>
+                        <p class="text-light font-semibold">Workflow Diagram</p>
+                        <p class="text-muted text-sm">Data flow and processing pipeline</p>
+                    </div>
+
+                    <!-- Component Details -->
+                    <div class="tech-card col-span-2">
+                        <h3 class="text-xl font-bold text-light mb-4">Core Components</h3>
+                        <div class="grid grid-cols-4 gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">🖥️</div>
+                                <p class="text-sm text-light font-semibold">API Gateway</p>
+                                <p class="text-xs text-muted">Request routing</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">⚙️</div>
+                                <p class="text-sm text-light font-semibold">Processing Engine</p>
+                                <p class="text-xs text-muted">Core computation</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">💾</div>
+                                <p class="text-sm text-light font-semibold">Data Layer</p>
+                                <p class="text-xs text-muted">Storage & caching</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">📡</div>
+                                <p class="text-sm text-light font-semibold">Message Queue</p>
+                                <p class="text-xs text-muted">Event streaming</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Innovation Roadmap / Timeline -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Innovation Roadmap</h2>
+                <p class="text-muted mb-12 text-lg">Our vision for the next 24 months</p>
+
+                <div class="space-y-8">
+                    <!-- Q1 -->
+                    <div class="timeline-item">
+                        <div class="tech-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q1 2025 - Foundation</h3>
+                            <p class="text-muted mb-4">Building core infrastructure and platform stability</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">API v2.0</span>
+                                <span class="badge">Performance Optimization</span>
+                                <span class="badge">Security Audit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="timeline-item">
+                        <div class="tech-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q2 2025 - Expansion</h3>
+                            <p class="text-muted mb-4">Introducing new features and market expansion</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">AI Features</span>
+                                <span class="badge">Mobile App</span>
+                                <span class="badge">Enterprise Edition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="timeline-item">
+                        <div class="tech-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q3 2025 - Innovation</h3>
+                            <p class="text-muted mb-4">Cutting-edge features and strategic partnerships</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">ML Integration</span>
+                                <span class="badge">Blockchain Support</span>
+                                <span class="badge">Partner Ecosystem</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="timeline-item">
+                        <div class="tech-card">
+                            <h3 class="text-2xl font-bold text-light mb-2">Q4 2025 - Leadership</h3>
+                            <p class="text-muted mb-4">Market leadership and next-generation capabilities</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Quantum Ready</span>
+                                <span class="badge">Global Expansion</span>
+                                <span class="badge">IPO Preparation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Market Adoption / Statistics -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Market Adoption & Statistics</h2>
+                <p class="text-muted mb-12 text-lg">Proven success and rapid growth metrics</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Stat 1 -->
+                    <div class="stat-box">
+                        <div class="stat-number">10M+</div>
+                        <p class="text-muted mt-4 mb-2">Active Users</p>
+                        <p class="text-xs text-cyan-400">↑ 150% YoY</p>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="stat-box">
+                        <div class="stat-number">$500M</div>
+                        <p class="text-muted mt-4 mb-2">Annual Revenue</p>
+                        <p class="text-xs text-cyan-400">↑ 200% YoY</p>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="stat-box">
+                        <div class="stat-number">98%</div>
+                        <p class="text-muted mt-4 mb-2">Customer Satisfaction</p>
+                        <p class="text-xs text-cyan-400">Industry Leading</p>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <p class="text-muted mt-4 mb-2">Enterprise Clients</p>
+                        <p class="text-xs text-cyan-400">Fortune 500 Companies</p>
+                    </div>
+                </div>
+
+                <!-- Adoption Metrics -->
+                <div class="tech-card">
+                    <h3 class="text-xl font-bold text-light mb-6">Key Performance Indicators</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-light">Platform Adoption</span>
+                                <span class="text-cyan-400 font-bold">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 87%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-light">Market Penetration</span>
+                                <span class="text-cyan-400 font-bold">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-light">Customer Retention</span>
+                                <span class="text-cyan-400 font-bold">94%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 94%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Challenges & Solutions -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-text">Challenges & Solutions</h2>
+                <p class="text-muted mb-12 text-lg">Addressing industry pain points with innovation</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Challenge 1 -->
+                    <div>
+                        <div class="challenge-box">
+                            <p class="text-light font-bold mb-2">Challenge: Scalability</p>
+                            <p class="text-muted text-sm">Handling exponential data growth and user demands</p>
+                        </div>
+                        <div class="solution-box">
+                            <p class="text-light font-bold mb-2">✓ Solution: Distributed Architecture</p>
+                            <p class="text-muted text-sm">Microservices and horizontal scaling capabilities</p>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 2 -->
+                    <div>
+                        <div class="challenge-box">
+                            <p class="text-light font-bold mb-2">Challenge: Security</p>
+                            <p class="text-muted text-sm">Protecting sensitive data from cyber threats</p>
+                        </div>
+                        <div class="solution-box">
+                            <p class="text-light font-bold mb-2">✓ Solution: Zero-Trust Security</p>
+                            <p class="text-muted text-sm">Multi-layer encryption and continuous monitoring</p>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 3 -->
+                    <div>
+                        <div class="challenge-box">
+                            <p class="text-light font-bold mb-2">Challenge: Integration</p>
+                            <p class="text-muted text-sm">Seamless connectivity with legacy systems</p>
+                        </div>
+                        <div class="solution-box">
+                            <p class="text-light font-bold mb-2">✓ Solution: Universal APIs</p>
+                            <p class="text-muted text-sm">REST, GraphQL, and webhook support</p>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 4 -->
+                    <div>
+                        <div class="challenge-box">
+                            <p class="text-light font-bold mb-2">Challenge: Compliance</p>
+                            <p class="text-muted text-sm">Meeting global regulatory requirements</p>
+                        </div>
+                        <div class="solution-box">
+                            <p class="text-light font-bold mb-2">✓ Solution: Compliance Framework</p>
+                            <p class="text-muted text-sm">GDPR, HIPAA, SOC2, ISO 27001 certified</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Conclusion / Contact -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+
+            <div class="relative z-10 text-center max-w-3xl">
+                <h2 class="text-6xl font-black mb-6 gradient-text">Ready to Transform?</h2>
+                <p class="text-2xl text-gray-300 mb-12">
+                    Join thousands of companies leveraging our technology for competitive advantage
+                </p>
+
+                <div class="grid grid-cols-3 gap-8 mb-12">
+                    <div class="tech-card">
+                        <p class="text-muted text-sm mb-2">Email</p>
+                        <p class="text-light font-semibold">contact@tech.com</p>
+                    </div>
+                    <div class="tech-card">
+                        <p class="text-muted text-sm mb-2">Phone</p>
+                        <p class="text-light font-semibold">+1 (555) 123-4567</p>
+                    </div>
+                    <div class="tech-card">
+                        <p class="text-muted text-sm mb-2">Website</p>
+                        <p class="text-light font-semibold">www.tech.com</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 justify-center mb-12">
+                    <button class="button-primary">Start Free Trial</button>
+                    <button class="button-secondary">Schedule Demo</button>
+                </div>
+
+                <div class="flex justify-center gap-4">
+                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-lg flex items-center justify-center text-light hover:border-cyan-500/60 transition">f</a>
+                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-lg flex items-center justify-center text-light hover:border-cyan-500/60 transition">in</a>
+                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-lg flex items-center justify-center text-light hover:border-cyan-500/60 transition">𝕏</a>
+                </div>
+
+                <p class="text-gray-500 text-sm mt-12">© 2024 Tech Innovation Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-nav">
+        <button onclick="previousSlide()">← Previous</button>
+        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+        let isDarkMode = true;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('light-mode');
+            const themeToggle = document.querySelector('.theme-toggle');
+            themeToggle.textContent = isDarkMode ? '🌙' : '☀️';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+            if (e.key === 't' || e.key === 'T') toggleTheme();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Presentation Template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            animation: slideIn 0.5s ease-in;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-nav button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .slide-counter {
+            color: #64748b;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-header-2 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-header-3 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .concept-card {
+            background: white;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .concept-card.concept-2 {
+            border-left-color: #10b981;
+        }
+
+        .concept-card.concept-3 {
+            border-left-color: #f59e0b;
+        }
+
+        .concept-card.concept-4 {
+            border-left-color: #ef4444;
+        }
+
+        .diagram-placeholder {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0f9ff 100%);
+            border: 2px dashed #3b82f6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .diagram-placeholder.diagram-2 {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);
+        }
+
+        .diagram-placeholder.diagram-3 {
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            height: 150px;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 50px;
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.1);
+        }
+
+        .bar.bar-2 {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+        }
+
+        .bar.bar-3 {
+            background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .bar.bar-4 {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .quiz-option:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+
+        .quiz-option.correct {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .key-point.point-2 {
+            background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);
+            border-left-color: #10b981;
+        }
+
+        .key-point.point-3 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-left-color: #f59e0b;
+        }
+
+        .reference-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .reference-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .button-secondary {
+            background: white;
+            color: #3b82f6;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #3b82f6;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-secondary:hover {
+            background: #f0f9ff;
+        }
+
+        .learning-objective {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .learning-objective::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .case-study-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.badge-2 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .badge.badge-3 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-indicator.step-2 .step-number {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .step-indicator.step-3 .step-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Cover Slide -->
+    <div class="slide-container active">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-20 right-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-20 left-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            
+            <div class="relative z-10 text-center max-w-3xl">
+                <div class="mb-6">
+                    <span class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">Educational Content</span>
+                </div>
+                <h1 class="text-7xl font-black mb-6 gradient-header">
+                    Learning Fundamentals
+                </h1>
+                <p class="text-2xl text-gray-700 mb-12">
+                    A Comprehensive Guide to Essential Concepts and Principles
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="button-primary">Start Learning</button>
+                    <button class="button-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Agenda / Learning Objectives -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Learning Objectives</h2>
+                <p class="text-gray-600 mb-12 text-lg">By the end of this course, you will be able to:</p>
+                
+                <div class="space-y-4 mb-12">
+                    <div class="learning-objective">
+                        <span class="text-lg text-gray-700">Understand the fundamental principles and core concepts of the subject matter</span>
+                    </div>
+                    <div class="learning-objective">
+                        <span class="text-lg text-gray-700">Apply theoretical knowledge to practical, real-world scenarios and challenges</span>
+                    </div>
+                    <div class="learning-objective">
+                        <span class="text-lg text-gray-700">Analyze complex problems using structured methodologies and frameworks</span>
+                    </div>
+                    <div class="learning-objective">
+                        <span class="text-lg text-gray-700">Evaluate different approaches and solutions based on established criteria</span>
+                    </div>
+                    <div class="learning-objective">
+                        <span class="text-lg text-gray-700">Create original solutions and demonstrate mastery of key competencies</span>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Course Agenda</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-2">Module 1</p>
+                            <p class="font-semibold text-gray-800">Introduction & Background</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600 mb-2">Module 2</p>
+                            <p class="font-semibold text-gray-800">Key Concepts & Definitions</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600 mb-2">Module 3</p>
+                            <p class="font-semibold text-gray-800">Visual Aids & Diagrams</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600 mb-2">Module 4</p>
+                            <p class="font-semibold text-gray-800">Examples & Case Studies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Introduction / Background -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Left Side: Content -->
+                <div>
+                    <h2 class="text-5xl font-black mb-6 gradient-header">Introduction</h2>
+                    <p class="text-gray-700 mb-6 leading-relaxed text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                    </p>
+                    <p class="text-gray-700 mb-8 leading-relaxed text-lg">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-gray-700">Key background information and context</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-gray-700">Historical development and evolution</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-gray-700">Relevance to modern applications</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Image Placeholder -->
+                <div class="diagram-placeholder">
+                    <div class="text-6xl">📚</div>
+                    <p class="text-gray-600 font-semibold">Background Image Placeholder</p>
+                    <p class="text-sm text-gray-500">Replace with relevant visual content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Key Concepts / Definitions -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Key Concepts & Definitions</h2>
+                <p class="text-gray-600 mb-12 text-lg">Essential terminology and foundational ideas</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Concept 1 -->
+                    <div class="concept-card">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Concept One</h3>
+                        <p class="text-gray-600 mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <p class="text-sm text-gray-500 italic">Definition: A concise explanation of the term and its significance.</p>
+                    </div>
+
+                    <!-- Concept 2 -->
+                    <div class="concept-card concept-2">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Concept Two</h3>
+                        <p class="text-gray-600 mb-4">
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <p class="text-sm text-gray-500 italic">Definition: A clear and comprehensive explanation of this important concept.</p>
+                    </div>
+
+                    <!-- Concept 3 -->
+                    <div class="concept-card concept-3">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Concept Three</h3>
+                        <p class="text-gray-600 mb-4">
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                        <p class="text-sm text-gray-500 italic">Definition: Understanding this concept is crucial for advanced topics.</p>
+                    </div>
+
+                    <!-- Concept 4 -->
+                    <div class="concept-card concept-4">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Concept Four</h3>
+                        <p class="text-gray-600 mb-4">
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p class="text-sm text-gray-500 italic">Definition: This concept builds upon the previous foundational ideas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Visual Aids / Diagrams -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-green-50 to-emerald-50 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header-2">Visual Aids & Diagrams</h2>
+                <p class="text-gray-600 mb-12 text-lg">Illustrative representations and conceptual frameworks</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Diagram 1 -->
+                    <div class="diagram-placeholder">
+                        <div class="text-5xl">📊</div>
+                        <p class="text-gray-700 font-semibold">Diagram Placeholder 1</p>
+                        <p class="text-sm text-gray-600">Process flow or system architecture</p>
+                    </div>
+
+                    <!-- Diagram 2 -->
+                    <div class="diagram-placeholder diagram-2">
+                        <div class="text-5xl">📈</div>
+                        <p class="text-gray-700 font-semibold">Diagram Placeholder 2</p>
+                        <p class="text-sm text-gray-600">Growth trends or comparative analysis</p>
+                    </div>
+
+                    <!-- Chart -->
+                    <div class="bg-white rounded-lg p-8 shadow-md">
+                        <h3 class="text-lg font-bold text-gray-800 mb-6">Sample Data Visualization</h3>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 60%;"></div>
+                            <div class="bar bar-2" style="height: 75%;"></div>
+                            <div class="bar bar-3" style="height: 85%;"></div>
+                            <div class="bar bar-4" style="height: 95%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-gray-600">
+                            <span>Category A</span>
+                            <span>Category B</span>
+                            <span>Category C</span>
+                            <span>Category D</span>
+                        </div>
+                    </div>
+
+                    <!-- Diagram 3 -->
+                    <div class="diagram-placeholder diagram-3">
+                        <div class="text-5xl">🔄</div>
+                        <p class="text-gray-700 font-semibold">Diagram Placeholder 3</p>
+                        <p class="text-sm text-gray-600">Cyclical processes or relationships</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Examples / Case Studies -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Examples & Case Studies</h2>
+                <p class="text-gray-600 mb-12 text-lg">Real-world applications and practical implementations</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Case Study 1 -->
+                    <div class="case-study-card">
+                        <div class="mb-4">
+                            <span class="badge">Case Study 1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Real-World Example One</h3>
+                        <p class="text-gray-600 mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. This case study demonstrates the practical application of key concepts in a business environment.
+                        </p>
+                        <div class="bg-blue-50 rounded p-4 mb-4">
+                            <p class="text-sm text-gray-700"><strong>Outcome:</strong> 45% improvement in efficiency and measurable results</p>
+                        </div>
+                        <button class="button-secondary text-sm">Read More</button>
+                    </div>
+
+                    <!-- Case Study 2 -->
+                    <div class="case-study-card">
+                        <div class="mb-4">
+                            <span class="badge badge-2">Case Study 2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Real-World Example Two</h3>
+                        <p class="text-gray-600 mb-4">
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. This example shows how concepts can be adapted for different scenarios.
+                        </p>
+                        <div class="bg-green-50 rounded p-4 mb-4">
+                            <p class="text-sm text-gray-700"><strong>Outcome:</strong> 60% cost reduction and enhanced productivity</p>
+                        </div>
+                        <button class="button-secondary text-sm">Read More</button>
+                    </div>
+
+                    <!-- Case Study 3 -->
+                    <div class="case-study-card">
+                        <div class="mb-4">
+                            <span class="badge badge-3">Case Study 3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Real-World Example Three</h3>
+                        <p class="text-gray-600 mb-4">
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. This case demonstrates innovative problem-solving approaches.
+                        </p>
+                        <div class="bg-yellow-50 rounded p-4 mb-4">
+                            <p class="text-sm text-gray-700"><strong>Outcome:</strong> 75% user satisfaction and market expansion</p>
+                        </div>
+                        <button class="button-secondary text-sm">Read More</button>
+                    </div>
+
+                    <!-- Case Study 4 -->
+                    <div class="case-study-card">
+                        <div class="mb-4">
+                            <span class="badge">Case Study 4</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Real-World Example Four</h3>
+                        <p class="text-gray-600 mb-4">
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt. This final case shows long-term sustainability.
+                        </p>
+                        <div class="bg-indigo-50 rounded p-4 mb-4">
+                            <p class="text-sm text-gray-700"><strong>Outcome:</strong> Sustained growth and industry recognition</p>
+                        </div>
+                        <button class="button-secondary text-sm">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Lessons / Tutorials -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-orange-50 to-amber-50 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header-3">Lessons & Tutorials</h2>
+                <p class="text-gray-600 mb-12 text-lg">Step-by-step guides and instructional content</p>
+
+                <div class="space-y-6 mb-12">
+                    <!-- Step 1 -->
+                    <div class="step-indicator">
+                        <div class="step-number">1</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Getting Started</h3>
+                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Begin by understanding the foundational principles and prerequisites.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-indicator step-2">
+                        <div class="step-number">2</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Building Core Skills</h3>
+                            <p class="text-gray-600">Ut enim ad minim veniam, quis nostrud exercitation. Develop practical skills through hands-on practice and exercises.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-indicator step-3">
+                        <div class="step-number">3</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Advanced Techniques</h3>
+                            <p class="text-gray-600">Duis aute irure dolor in reprehenderit in voluptate. Master advanced concepts and apply them to complex scenarios.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tutorial Resources -->
+                <div class="bg-white rounded-lg p-8 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Available Resources</h3>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">📹</div>
+                            <p class="font-semibold text-gray-800">Video Tutorials</p>
+                            <p class="text-sm text-gray-600 mt-2">25+ hours of content</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">📖</div>
+                            <p class="font-semibold text-gray-800">Written Guides</p>
+                            <p class="text-sm text-gray-600 mt-2">Comprehensive documentation</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">💻</div>
+                            <p class="font-semibold text-gray-800">Interactive Labs</p>
+                            <p class="text-sm text-gray-600 mt-2">Hands-on practice exercises</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Quiz / Knowledge Check -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Knowledge Check</h2>
+                <p class="text-gray-600 mb-12 text-lg">Test your understanding with these quiz questions</p>
+
+                <!-- Question 1 -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Question 1: Lorem ipsum dolor sit amet?</h3>
+                    <div class="space-y-3">
+                        <div class="quiz-option">
+                            <input type="radio" name="q1" id="q1a" class="mr-3">
+                            <label for="q1a" class="cursor-pointer">Option A: Consectetur adipiscing elit</label>
+                        </div>
+                        <div class="quiz-option correct">
+                            <input type="radio" name="q1" id="q1b" class="mr-3" checked>
+                            <label for="q1b" class="cursor-pointer font-semibold">✓ Option B: Sed do eiusmod tempor (Correct)</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="q1" id="q1c" class="mr-3">
+                            <label for="q1c" class="cursor-pointer">Option C: Incididunt ut labore</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="q1" id="q1d" class="mr-3">
+                            <label for="q1d" class="cursor-pointer">Option D: Et dolore magna aliqua</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Question 2: Which statement is true?</h3>
+                    <div class="space-y-3">
+                        <div class="quiz-option">
+                            <input type="radio" name="q2" id="q2a" class="mr-3">
+                            <label for="q2a" class="cursor-pointer">Option A: Ut enim ad minim veniam</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="q2" id="q2b" class="mr-3">
+                            <label for="q2b" class="cursor-pointer">Option B: Quis nostrud exercitation</label>
+                        </div>
+                        <div class="quiz-option incorrect">
+                            <input type="radio" name="q2" id="q2c" class="mr-3" checked>
+                            <label for="q2c" class="cursor-pointer font-semibold">✗ Option C: Ullamco laboris nisi (Incorrect)</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="q2" id="q2d" class="mr-3">
+                            <label for="q2d" class="cursor-pointer">Option D: Ut aliquip ex ea commodo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6">
+                    <p class="text-gray-800"><strong>Progress:</strong> 2 of 10 questions answered</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-4">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 20%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Summary / Key Takeaways -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-indigo-50 to-purple-50 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Key Takeaways</h2>
+                <p class="text-gray-600 mb-12 text-lg">Essential points to remember from this course</p>
+
+                <div class="space-y-4 mb-12">
+                    <div class="key-point">
+                        <p class="text-lg font-semibold text-gray-800 mb-2">Key Point 1</p>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a fundamental principle that underpins all subsequent learning.</p>
+                    </div>
+
+                    <div class="key-point point-2">
+                        <p class="text-lg font-semibold text-gray-800 mb-2">Key Point 2</p>
+                        <p class="text-gray-700">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Understanding this concept is crucial for practical application.</p>
+                    </div>
+
+                    <div class="key-point point-3">
+                        <p class="text-lg font-semibold text-gray-800 mb-2">Key Point 3</p>
+                        <p class="text-gray-700">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. This principle connects theory with real-world scenarios.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <p class="text-lg font-semibold text-gray-800 mb-2">Key Point 4</p>
+                        <p class="text-gray-700">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt. Mastery of this concept enables advanced applications.</p>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="bg-white rounded-lg p-8 shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Next Steps</h3>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <div class="text-3xl mb-3">🎯</div>
+                            <p class="font-semibold text-gray-800 mb-2">Practice</p>
+                            <p class="text-sm text-gray-600">Apply concepts to real projects and exercises</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl mb-3">📚</div>
+                            <p class="font-semibold text-gray-800 mb-2">Explore</p>
+                            <p class="text-sm text-gray-600">Dive deeper with advanced topics and resources</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl mb-3">🤝</div>
+                            <p class="font-semibold text-gray-800 mb-2">Connect</p>
+                            <p class="text-sm text-gray-600">Join community and collaborate with peers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: References / Contact -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">References & Contact</h2>
+                <p class="text-gray-600 mb-12 text-lg">Additional resources and ways to connect</p>
+
+                <div class="grid grid-cols-2 gap-12">
+                    <!-- References -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Key References</h3>
+                        <div class="space-y-4">
+                            <div class="reference-item">
+                                <p class="font-semibold text-gray-800">Smith, J. (2023)</p>
+                                <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Journal of Educational Research.</p>
+                            </div>
+                            <div class="reference-item">
+                                <p class="font-semibold text-gray-800">Johnson, M. & Lee, K. (2022)</p>
+                                <p class="text-sm text-gray-600">Ut enim ad minim veniam, quis nostrud exercitation. International Conference Proceedings.</p>
+                            </div>
+                            <div class="reference-item">
+                                <p class="font-semibold text-gray-800">Williams, R. (2021)</p>
+                                <p class="text-sm text-gray-600">Duis aute irure dolor in reprehenderit in voluptate. Academic Press Publications.</p>
+                            </div>
+                            <div class="reference-item">
+                                <p class="font-semibold text-gray-800">Brown, A. et al. (2020)</p>
+                                <p class="text-sm text-gray-600">Excepteur sint occaecat cupidatat non proident. Research Institute Bulletin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Get In Touch</h3>
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-8 mb-6">
+                            <div class="mb-6">
+                                <p class="text-sm text-gray-600 mb-2">Email</p>
+                                <p class="text-lg font-semibold text-gray-800">contact@education.com</p>
+                            </div>
+                            <div class="mb-6">
+                                <p class="text-sm text-gray-600 mb-2">Phone</p>
+                                <p class="text-lg font-semibold text-gray-800">+1 (555) 123-4567</p>
+                            </div>
+                            <div class="mb-6">
+                                <p class="text-sm text-gray-600 mb-2">Website</p>
+                                <p class="text-lg font-semibold text-gray-800">www.education.com</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Office Hours</p>
+                                <p class="text-lg font-semibold text-gray-800">Mon-Fri, 9 AM - 5 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div>
+                            <p class="text-sm text-gray-600 mb-4">Follow Us</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">f</a>
+                                <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">in</a>
+                                <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">𝕏</a>
+                                <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">▶</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-12 pt-8 border-t border-gray-200 text-center">
+                    <p class="text-gray-600">© 2024 Educational Institution. All rights reserved.</p>
+                    <p class="text-sm text-gray-500 mt-2">Thank you for completing this course!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-nav">
+        <button onclick="previousSlide()">← Previous</button>
+        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

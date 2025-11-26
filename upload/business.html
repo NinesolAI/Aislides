@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-nav button {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.4);
+        }
+
+        .slide-counter {
+            color: #64748b;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-header-2 {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-header-3 {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .business-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: #1e40af;
+        }
+
+        .business-card.card-2 {
+            border-left: 4px solid #059669;
+        }
+
+        .business-card.card-2:hover {
+            border-color: #059669;
+        }
+
+        .business-card.card-3 {
+            border-left: 4px solid #d97706;
+        }
+
+        .business-card.card-3:hover {
+            border-color: #d97706;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            height: 180px;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 60px;
+            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #1e40af;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.1);
+        }
+
+        .bar.bar-2 {
+            background: linear-gradient(180deg, #059669 0%, #047857 100%);
+        }
+
+        .bar.bar-2::after {
+            color: #059669;
+        }
+
+        .bar.bar-3 {
+            background: linear-gradient(180deg, #d97706 0%, #b45309 100%);
+        }
+
+        .bar.bar-3::after {
+            color: #d97706;
+        }
+
+        .bar.bar-4 {
+            background: linear-gradient(180deg, #7c3aed 0%, #6d28d9 100%);
+        }
+
+        .bar.bar-4::after {
+            color: #7c3aed;
+        }
+
+        .metric-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-box:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .metric-number {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0f9ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .team-info {
+            padding: 16px;
+            text-align: center;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            border-radius: 50%;
+            border: 3px solid #f5f7fa;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 20px;
+            width: 4px;
+            height: 30px;
+            background: rgba(30, 64, 175, 0.2);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e40af 0%, #1e3a8a 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+        }
+
+        .button-secondary {
+            background: white;
+            color: #1e40af;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: 2px solid #1e40af;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-secondary:hover {
+            background: #f0f9ff;
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #dbeafe 0%, #f0f9ff 100%);
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            border-color: #1e40af;
+            background: linear-gradient(135deg, #bfdbfe 0%, #dbeafe 100%);
+        }
+
+        .badge.badge-2 {
+            background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+            border-color: #bbf7d0;
+            color: #059669;
+        }
+
+        .badge.badge-2:hover {
+            border-color: #059669;
+            background: linear-gradient(135deg, #bbf7d0 0%, #dcfce7 100%);
+        }
+
+        .badge.badge-3 {
+            background: linear-gradient(135deg, #fed7aa 0%, #fef3c7 100%);
+            border-color: #fdba74;
+            color: #d97706;
+        }
+
+        .badge.badge-3:hover {
+            border-color: #d97706;
+            background: linear-gradient(135deg, #fdba74 0%, #fed7aa 100%);
+        }
+
+        .strategy-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-item:hover {
+            border-color: #1e40af;
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.1);
+        }
+
+        .offering-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #1e40af;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .offering-card.offering-2 {
+            border-top-color: #059669;
+        }
+
+        .offering-card.offering-3 {
+            border-top-color: #d97706;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Cover Slide -->
+    <div class="slide-container active">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 via-white to-blue-50 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-20 right-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            <div class="absolute bottom-20 left-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            
+            <div class="relative z-10 text-center">
+                <div class="mb-6">
+                    <span class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">Business Solutions</span>
+                </div>
+                <h1 class="text-7xl font-black mb-6 gradient-header">
+                    InnovateCorp
+                </h1>
+                <p class="text-2xl text-gray-700 mb-12">
+                    Transforming Business Through Strategic Innovation
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="button-primary">Explore Our Vision</button>
+                    <button class="button-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Agenda / Table of Contents -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Agenda</h2>
+                <p class="text-gray-600 mb-12 text-lg">Today's presentation outline</p>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="business-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black text-blue-600">01</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Company Overview</h3>
+                                <p class="text-gray-600">Vision, mission, and core values</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black text-green-600">02</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Market Analysis</h3>
+                                <p class="text-gray-600">Industry trends and opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black text-orange-600">03</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Products & Services</h3>
+                                <p class="text-gray-600">Our offerings and value proposition</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl font-black text-purple-600">04</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Financial Projections</h3>
+                                <p class="text-gray-600">Growth metrics and ROI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Company Overview / Vision & Mission -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
+                <!-- Left Side: Content -->
+                <div>
+                    <h2 class="text-5xl font-black mb-6 gradient-header">Our Company</h2>
+                    <p class="text-gray-700 mb-6 leading-relaxed text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. We are a forward-thinking organization dedicated to delivering innovative business solutions that drive measurable growth and competitive advantage.
+                    </p>
+                    <p class="text-gray-700 mb-8 leading-relaxed text-lg">
+                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Our mission is to empower businesses worldwide with cutting-edge technology and strategic expertise.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="business-card">
+                            <h4 class="font-bold text-gray-800 mb-2">Our Vision</h4>
+                            <p class="text-gray-600 text-sm">To be the global leader in business transformation and digital innovation</p>
+                        </div>
+                        <div class="business-card card-2">
+                            <h4 class="font-bold text-gray-800 mb-2">Our Mission</h4>
+                            <p class="text-gray-600 text-sm">Deliver exceptional value through strategic partnerships and innovative solutions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Image Placeholder -->
+                <div class="flex flex-col gap-6">
+                    <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-blue-50 border-2 border-dashed border-blue-300 rounded-2xl flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🏢</div>
+                            <p class="text-gray-600">Company Image</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="metric-box">
+                            <div class="metric-number">15+</div>
+                            <p class="text-gray-600 mt-2 text-sm">Years in Business</p>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-number">500+</div>
+                            <p class="text-gray-600 mt-2 text-sm">Team Members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Market Overview / Analysis -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Market Overview</h2>
+                <p class="text-gray-600 mb-12 text-lg">Industry analysis and market opportunity</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Chart -->
+                    <div class="business-card">
+                        <h3 class="text-xl font-bold text-gray-800 mb-8">Market Growth Projection</h3>
+                        <div class="chart-bar">
+                            <div class="bar" data-value="$2.1B"></div>
+                            <div class="bar bar-2" data-value="$2.8B"></div>
+                            <div class="bar bar-3" data-value="$3.6B"></div>
+                            <div class="bar bar-4" data-value="$4.5B"></div>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-gray-600">
+                            <span>2021</span>
+                            <span>2022</span>
+                            <span>2023</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="space-y-4">
+                        <div class="metric-box">
+                            <div class="metric-number">45%</div>
+                            <p class="text-gray-600 mt-4 mb-2">CAGR</p>
+                            <p class="text-xs text-blue-600">Compound Annual Growth Rate</p>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-number">$12.3B</div>
+                            <p class="text-gray-600 mt-4 mb-2">Total Addressable Market</p>
+                            <p class="text-xs text-blue-600">By 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Insights -->
+                <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Key Market Insights</h3>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <p class="text-gray-800 font-semibold mb-2">Market Demand</p>
+                            <p class="text-sm text-gray-600">Increasing demand for digital transformation solutions across all sectors</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-800 font-semibold mb-2">Competition</p>
+                            <p class="text-sm text-gray-600">Fragmented market with opportunity for consolidation and differentiation</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-800 font-semibold mb-2">Opportunity</p>
+                            <p class="text-sm text-gray-600">Emerging markets and vertical expansion present significant growth potential</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Product / Service Offerings -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-white to-blue-50 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Our Products & Services</h2>
+                <p class="text-gray-600 mb-12 text-lg">Comprehensive solutions for business success</p>
+
+                <div class="grid grid-cols-3 gap-8">
+                    <!-- Offering 1 -->
+                    <div class="offering-card">
+                        <div class="text-4xl mb-4">📊</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Analytics Platform</h3>
+                        <p class="text-gray-600 mb-4">Advanced data analytics and business intelligence tools for informed decision-making.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Real-time dashboards</li>
+                            <li>✓ Predictive analytics</li>
+                            <li>✓ Custom reporting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Offering 2 -->
+                    <div class="offering-card offering-2">
+                        <div class="text-4xl mb-4">🔧</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Consulting Services</h3>
+                        <p class="text-gray-600 mb-4">Strategic consulting and implementation services to drive digital transformation.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Strategy development</li>
+                            <li>✓ Process optimization</li>
+                            <li>✓ Change management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Offering 3 -->
+                    <div class="offering-card offering-3">
+                        <div class="text-4xl mb-4">☁️</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Cloud Solutions</h3>
+                        <p class="text-gray-600 mb-4">Scalable cloud infrastructure and managed services for enterprise applications.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>✓ Infrastructure as a Service</li>
+                            <li>✓ Platform as a Service</li>
+                            <li>✓ 24/7 Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Business Strategy -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Business Strategy</h2>
+                <p class="text-gray-600 mb-12 text-lg">Our strategic approach to market leadership</p>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Strategy 1 -->
+                    <div class="strategy-item">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Market Expansion</h3>
+                        <p class="text-gray-600 mb-4">Penetrate new geographic markets and verticals through strategic partnerships and acquisitions.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">75% Progress</p>
+                    </div>
+
+                    <!-- Strategy 2 -->
+                    <div class="strategy-item">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Product Innovation</h3>
+                        <p class="text-gray-600 mb-4">Invest in R&D to develop next-generation products with advanced AI and machine learning capabilities.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">60% Progress</p>
+                    </div>
+
+                    <!-- Strategy 3 -->
+                    <div class="strategy-item">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Customer Success</h3>
+                        <p class="text-gray-600 mb-4">Build long-term relationships through exceptional service delivery and continuous value creation.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">85% Progress</p>
+                    </div>
+
+                    <!-- Strategy 4 -->
+                    <div class="strategy-item">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Operational Excellence</h3>
+                        <p class="text-gray-600 mb-4">Optimize operations and reduce costs through automation and process improvements.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">70% Progress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Financials / Key Metrics -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 to-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Financial Projections</h2>
+                <p class="text-gray-600 mb-12 text-lg">Key metrics and growth forecasts</p>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <!-- Chart -->
+                    <div class="business-card">
+                        <h3 class="text-xl font-bold text-gray-800 mb-8">Revenue Forecast (in Millions)</h3>
+                        <div class="chart-bar">
+                            <div class="bar" data-value="$45M"></div>
+                            <div class="bar bar-2" data-value="$68M"></div>
+                            <div class="bar bar-3" data-value="$102M"></div>
+                            <div class="bar bar-4" data-value="$155M"></div>
+                        </div>
+                        <div class="flex justify-between mt-6 text-sm text-gray-600">
+                            <span>2022</span>
+                            <span>2023</span>
+                            <span>2024</span>
+                            <span>2025E</span>
+                        </div>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="space-y-4">
+                        <div class="metric-box">
+                            <div class="metric-number">245%</div>
+                            <p class="text-gray-600 mt-4 mb-2">Revenue Growth</p>
+                            <p class="text-xs text-blue-600">3-Year CAGR</p>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-number">$2.1B</div>
+                            <p class="text-gray-600 mt-4 mb-2">Valuation</p>
+                            <p class="text-xs text-blue-600">Series C Funding</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPIs -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Key Performance Indicators</h3>
+                    <div class="grid grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-blue-600">92%</p>
+                            <p class="text-sm text-gray-600 mt-2">Customer Retention</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-green-600">3.2x</p>
+                            <p class="text-sm text-gray-600 mt-2">Magic Number (CAC Payback)</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-orange-600">$45K</p>
+                            <p class="text-sm text-gray-600 mt-2">Average Contract Value</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-purple-600">38%</p>
+                            <p class="text-sm text-gray-600 mt-2">Gross Margin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Team / Leadership Profiles -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-white flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Leadership Team</h2>
+                <p class="text-gray-600 mb-12 text-lg">Experienced executives driving our vision</p>
+
+                <div class="grid grid-cols-4 gap-6">
+                    <!-- Team Member 1 -->
+                    <div class="team-member">
+                        <div class="team-photo">👨‍💼</div>
+                        <div class="team-info">
+                            <h3 class="font-bold text-gray-800">John Smith</h3>
+                            <p class="text-sm text-gray-600">Chief Executive Officer</p>
+                            <p class="text-xs text-gray-500 mt-2">20+ years in tech industry</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="team-member">
+                        <div class="team-photo">👩‍💼</div>
+                        <div class="team-info">
+                            <h3 class="font-bold text-gray-800">Sarah Johnson</h3>
+                            <p class="text-sm text-gray-600">Chief Technology Officer</p>
+                            <p class="text-xs text-gray-500 mt-2">15+ years in software development</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="team-member">
+                        <div class="team-photo">👨‍💼</div>
+                        <div class="team-info">
+                            <h3 class="font-bold text-gray-800">Michael Chen</h3>
+                            <p class="text-sm text-gray-600">Chief Financial Officer</p>
+                            <p class="text-xs text-gray-500 mt-2">18+ years in finance</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="team-member">
+                        <div class="team-photo">👩‍💼</div>
+                        <div class="team-info">
+                            <h3 class="font-bold text-gray-800">Emily Davis</h3>
+                            <p class="text-sm text-gray-600">Chief Marketing Officer</p>
+                            <p class="text-xs text-gray-500 mt-2">12+ years in marketing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Stats -->
+                <div class="grid grid-cols-3 gap-8 mt-12">
+                    <div class="business-card">
+                        <p class="text-gray-600 text-sm mb-2">Average Experience</p>
+                        <p class="text-3xl font-bold text-blue-600">18+ Years</p>
+                    </div>
+                    <div class="business-card card-2">
+                        <p class="text-gray-600 text-sm mb-2">Team Size</p>
+                        <p class="text-3xl font-bold text-green-600">500+</p>
+                    </div>
+                    <div class="business-card card-3">
+                        <p class="text-gray-600 text-sm mb-2">Global Offices</p>
+                        <p class="text-3xl font-bold text-orange-600">12</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Roadmap / Milestones -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-white to-blue-50 flex flex-col items-center justify-center px-12 py-20">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-5xl font-black mb-4 gradient-header">Strategic Roadmap</h2>
+                <p class="text-gray-600 mb-12 text-lg">Our path to market leadership</p>
+
+                <div class="space-y-8">
+                    <!-- Milestone 1 -->
+                    <div class="timeline-item">
+                        <div class="business-card">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Q1 2025 - Product Launch</h3>
+                            <p class="text-gray-600 mb-4">Launch next-generation platform with AI-powered features and enhanced user experience.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Product Development</span>
+                                <span class="badge badge-2">Beta Testing</span>
+                                <span class="badge badge-3">Market Launch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div class="timeline-item">
+                        <div class="business-card">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Q2 2025 - Market Expansion</h3>
+                            <p class="text-gray-600 mb-4">Expand into 5 new geographic markets and establish regional partnerships.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Geographic Expansion</span>
+                                <span class="badge badge-2">Partnership Development</span>
+                                <span class="badge badge-3">Sales Growth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div class="timeline-item">
+                        <div class="business-card">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Q3 2025 - Strategic Acquisition</h3>
+                            <p class="text-gray-600 mb-4">Acquire complementary technology company to expand product portfolio and capabilities.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">M&A Activity</span>
+                                <span class="badge badge-2">Integration</span>
+                                <span class="badge badge-3">Synergy Realization</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div class="timeline-item">
+                        <div class="business-card">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Q4 2025 - IPO Preparation</h3>
+                            <p class="text-gray-600 mb-4">Prepare for public market listing and achieve unicorn valuation milestone.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Regulatory Compliance</span>
+                                <span class="badge badge-2">Financial Audit</span>
+                                <span class="badge badge-3">IPO Launch</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Closing / Call to Action -->
+    <div class="slide-container">
+        <div class="w-full h-full bg-gradient-to-br from-blue-50 via-white to-blue-50 flex flex-col items-center justify-center px-8 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-20 right-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            <div class="absolute bottom-20 left-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+
+            <div class="relative z-10 text-center max-w-3xl">
+                <h2 class="text-6xl font-black mb-6 gradient-header">Let's Partner Together</h2>
+                <p class="text-2xl text-gray-700 mb-12">
+                    Join us in transforming the future of business through innovation and strategic excellence
+                </p>
+
+                <div class="grid grid-cols-3 gap-8 mb-12">
+                    <div class="business-card">
+                        <p class="text-gray-600 text-sm mb-2">Email</p>
+                        <p class="text-gray-800 font-semibold">hello@innovatecorp.com</p>
+                    </div>
+                    <div class="business-card">
+                        <p class="text-gray-600 text-sm mb-2">Phone</p>
+                        <p class="text-gray-800 font-semibold">+1 (555) 123-4567</p>
+                    </div>
+                    <div class="business-card">
+                        <p class="text-gray-600 text-sm mb-2">Website</p>
+                        <p class="text-gray-800 font-semibold">www.innovatecorp.com</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 justify-center mb-12">
+                    <button class="button-primary">Schedule Meeting</button>
+                    <button class="button-secondary">Download Brochure</button>
+                </div>
+
+                <div class="flex justify-center gap-4">
+                    <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">f</a>
+                    <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">in</a>
+                    <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 transition">𝕏</a>
+                </div>
+
+                <p class="text-gray-500 text-sm mt-12">© 2024 InnovateCorp. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-nav">
+        <button onclick="previousSlide()">← Previous</button>
+        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

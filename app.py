@@ -407,36 +407,36 @@ async def generate_html_presentation(request: PresentationRequest):
     
     return HTMLResponse(content=final_html, status_code=200)
 
-@app.post("/generate-ppt")
-async def generate_ppt_presentation(request: PresentationRequest):
-    """
-    Generates a PowerPoint (.pptx) presentation with AI-filled content and returns it as a file download.
-    This endpoint converts an AI-generated HTML presentation to PPTX.
-    """
-    # 1. Generate the HTML content first
-    theme_path = get_template_path(request.theme)
-    async with aiofiles.open(theme_path, mode="r") as f:
-        html_template = await f.read()
+# @app.post("/generate-ppt")
+# async def generate_ppt_presentation(request: PresentationRequest):
+#     """
+#     Generates a PowerPoint (.pptx) presentation with AI-filled content and returns it as a file download.
+#     This endpoint converts an AI-generated HTML presentation to PPTX.
+#     """
+#     # 1. Generate the HTML content first
+#     theme_path = get_template_path(request.theme)
+#     async with aiofiles.open(theme_path, mode="r") as f:
+#         html_template = await f.read()
         
-    final_html = await generate_content_with_openai(
-        html_template, 
-        request.topic, 
-        request.theme, 
-        request.num_slides,
-        is_pptx=False
-    )
+#     final_html = await generate_content_with_openai(
+#         html_template, 
+#         request.topic, 
+#         request.theme, 
+#         request.num_slides,
+#         is_pptx=False
+#     )
     
-    # 2. Convert HTML to PPTX
-    ppt_io = html_to_ppt(final_html)
+#     # 2. Convert HTML to PPTX
+#     ppt_io = html_to_ppt(final_html)
     
-    # 3. Return the PPTX file as a download
-    filename = f"{request.theme}_{request.topic.replace(' ', '_')}.pptx"
+#     # 3. Return the PPTX file as a download
+#     filename = f"{request.theme}_{request.topic.replace(' ', '_')}.pptx"
     
-    return StreamingResponse(
-        ppt_io,
-        media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        headers={"Content-Disposition": f"attachment; filename={filename}"}
-    )
+#     return StreamingResponse(
+#         ppt_io,
+#         media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+#         headers={"Content-Disposition": f"attachment; filename={filename}"}
+#     )
 
 @app.post("/generate-pptx-from-template")
 async def generate_pptx_from_template(request: PresentationRequest):

@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateCorp Presentation - Consolidated</title>
+    <style>
+        /* Global Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        /* --- Consolidated Slide Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #F2F2F2 0%, #FFFFFF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 80px;
+        }
+
+        .logo-section {
+            flex: 0 0 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-section img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .content-section {
+            flex: 0 0 65%;
+            padding-left: 60px;
+        }
+
+        .title {
+            font-size: 72px;
+            font-weight: 900;
+            color: #1A1A1A;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #333333;
+            font-weight: 300;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 30px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 400px;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px;
+        }
+
+        .header {
+            margin-bottom: 60px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 60px;
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .agenda-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: #FF3B30;
+            min-width: 40px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .agenda-text {
+            font-size: 16px;
+            color: #333333;
+            font-weight: 500;
+            line-height: 1.6;
+            padding-top: 4px;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px;
+        }
+
+        .header {
+            margin-bottom: 50px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .company-image {
+            width: 100%;
+            max-width: 450px;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .metrics-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .metric-box {
+            background: #F2F2F2;
+            padding: 30px;
+            border-left: 4px solid #FF3B30;
+        }
+
+        .metric-number {
+            font-size: 42px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px 30px 100px; /* keep top padding for title, reduce bottom to fit */
+        }
+
+        .header {
+            margin-bottom: 30px; /* reduced from 50 */
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 20px; /* reduced from 40 */
+        }
+
+        .data-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .market-table th,
+        .market-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .market-table th {
+            background: #F2F2F2;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .market-table td {
+            font-size: 14px;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .market-table td:first-child {
+            color: #1A1A1A;
+            font-weight: 600;
+        }
+
+        .metric-card {
+            background: #F2F2F2;
+            padding: 25px;
+            border-left: 4px solid #FF3B30;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 900;
+            color: #FF3B30;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .metric-description {
+            font-size: 12px;
+            color: #999999;
+            font-weight: 400;
+        }
+
+        .insights-section {
+            background: #F2F2F2;
+            padding: 20px; /* reduced from 40 */
+        }
+
+        .insights-title {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .insight-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-label {
+            font-size: 14px;
+            color: #1A1A1A;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .insight-text {
+            font-size: 13px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px;
+        }
+
+        .header {
+            margin-bottom: 60px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .offering-card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .offering-icon {
+            font-size: 48px;
+            line-height: 1;
+            min-height: 60px;
+        }
+
+        .offering-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #1A1A1A;
+            line-height: 1.3;
+        }
+
+        .offering-description {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .offering-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 2px solid #F2F2F2;
+        }
+
+        .feature-item {
+            font-size: 14px;
+            color: #333333;
+            font-weight: 500;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: #FF3B30;
+            font-weight: 900;
+            min-width: 20px;
+        }
+
+        .card-accent {
+            width: 100%;
+            height: 3px;
+            background: #FF3B30;
+            margin-top: 20px;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px;
+        }
+
+        .header {
+            margin-bottom: 20px; /* reduced from 50 to save 30px height */
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px; /* reduced from 40 to save 16px vertical space */
+        }
+
+        .strategy-item {
+            background: #F2F2F2;
+            padding: 28px; /* reduced from 40 to save 24px per item height */
+            border-left: 4px solid #FF3B30;
+        }
+
+        .strategy-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .strategy-description {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #333333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #E0E0E0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #FF3B30;
+            position: relative;
+        }
+
+        .progress-fill-75 { width: 75%; }
+        .progress-fill-60 { width: 60%; }
+        .progress-fill-85 { width: 85%; }
+        .progress-fill-70 { width: 70%; }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 100px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 15px;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .content-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .data-cell {
+            background: #F2F2F2;
+            padding: 20px;
+            text-align: center;
+            border-left: 3px solid #FF3B30;
+        }
+
+        .data-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .data-label {
+            font-size: 12px;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .kpi-item {
+            background: #F2F2F2;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: #FF3B30;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .kpi-label {
+            font-size: 13px;
+            color: #333333;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 100px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-image {
+            width: 100%;
+            max-width: 450px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .leadership-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .leader-item {
+            border-left: 3px solid #FF3B30;
+            padding-left: 20px;
+        }
+
+        .leader-name {
+            font-size: 14px;
+            font-weight: 900;
+            color: #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .leader-title {
+            font-size: 13px;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .leader-experience {
+            font-size: 12px;
+            color: #999999;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: #F2F2F2;
+            padding: 20px;
+            border-top: 3px solid #FF3B30;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666666;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            /* Keep top padding 80px for title consistency; reduce bottom padding to save height */
+            padding: 80px 100px 40px;
+        }
+
+        .header {
+            /* Reduced spacing below header */
+            margin-bottom: 16px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+            /* Slightly reduced spacing */
+            margin-bottom: 12px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            /* Slightly reduced spacing under title */
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #FF3B30;
+        }
+
+        .milestone {
+            position: relative;
+            /* Reduced bottom spacing per milestone */
+            padding-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: -52px;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            background: #FFFFFF;
+            border: 3px solid #FF3B30;
+            border-radius: 50%;
+        }
+
+        .milestone-content {
+            flex: 1;
+            /* Remove extra top padding inside milestone content */
+            padding-top: 0;
+        }
+
+        .milestone-quarter {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FF3B30;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            /* Slightly reduced spacing */
+            margin-bottom: 4px;
+        }
+
+        .milestone-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #1A1A1A;
+            /* Slightly reduced spacing */
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .milestone-description {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.6;
+            /* Slightly reduced spacing */
+            margin-bottom: 8px;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #F2F2F2;
+            color: #333333;
+            /* Reduce vertical padding to shrink tag height */
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #E0E0E0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.primary {
+            background: #FF3B30;
+            color: #FFFFFF;
+            border-color: #FF3B30;
+        }
+
+        .tag.secondary {
+            background: #F2F2F2;
+            color: #333333;
+            border-color: #E0E0E0;
+        }
+
+        .tag.tertiary {
+            background: #FFFFFF;
+            color: #FF3B30;
+            border: 1px solid #FF3B30;
+        }
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F2F2F2;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F2F2F2 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 100px;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            order: -1;
+        }
+
+        .team-image {
+            width: 100%;
+            max-width: 420px;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: #FF3B30;
+        }
+
+        .main-title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1A1A1A;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .cta-message {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* Refresh contact layout to 2-column grid to reduce vertical height */
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 20px;
+            row-gap: 20px;
+        }
+
+        .contact-item {
+            background: #F2F2F2;
+            padding: 20px;
+            border-left: 4px solid #FF3B30;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            color: #1A1A1A;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Slightly reduce footer top padding to fit within 720px total height */
+        .footer-note {
+            font-size: 12px;
+            color: #999999;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-top: 12px;
+            border-top: 1px solid #E0E0E0;
+        }
+
+
+        /* --- End Consolidated Slide Styles --- */
+
+        /* Presentation Wrapper */
+        #presentation-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* Individual Slide Styles */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* Navigation Buttons */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            transition: background 0.3s;
+            user-select: none;
+        }
+
+        .nav-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #prev-button {
+            left: 0;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        #next-button {
+            right: 0;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        /* Slide Indicator */
+        #slide-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div id="presentation-container">
+        <!-- Slide Content Injection Point -->
+        
+        <div class="slide" id="slide-1">
+            <div class="slide-container">
+        <div class="logo-section">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/cHuLBhUXhP2My4H88u96vA/sandbox/slides_resource_ikcknf3adjh7nk2zbqzf8-49bc3fe6-e2b-prod-aws_1764589662477_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL3RNdlFKSk0wdkw1Tw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvY0h1TEJoVVhoUDJNeTRIODh1OTZ2QS9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pa2NrbmYzYWRqaDduazJ6YnF6ZjgtNDliYzNmZTYtZTJiLXByb2QtYXdzXzE3NjQ1ODk2NjI0NzdfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMM1JOZGxGS1NrMHdka3cxVHcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=JE98fDyJ4Z3s0Ac6yKOhuVI7kk9aEGIVo69alANcD5oLtCDemCkSuw9XELCXeSaWqo1Q2jEeEBvo~31Wvc5nlja6lyv10Uix52KuOAjeB7cx8xBVzqnCwJmZS2M4-2Uh6EVhncQggCGD9dSycZCDIVLek0ADUN2Y60fZlYQ-VN2fPny6aTFgiumMjOmNlJXJQCgOe7zc~KUsgSlojBXQ-SrTPI8dvcrVaGFCKMS2YO~WG6skkKkLnpsYorodbtktat03UPVv2YhkAeXj03Zrc7zUo8toBIKOpD7PRmO3Y0Hzp8XlJ4ifTw9Y1ezWKGH1ZVzkNd8iCJcaNdqCu4YMgg__" alt="InnovateCorp Logo">
+        </div>
+        <div class="content-section">
+            <div class="accent-line"></div>
+            <h1 class="title">InnovateCorp</h1>
+            <p class="subtitle">A Strategic Presentation</p>
+            <p class="tagline">Transforming business through innovation and strategic excellence</p>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-2">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Agenda</h1>
+            <p class="subtitle">Today's presentation outline</p>
+        </div>
+
+        <div class="agenda-grid">
+            <div class="agenda-item">
+                <div class="agenda-number">01</div>
+                <div class="agenda-text">Company Profile</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">02</div>
+                <div class="agenda-text">Market Overview</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">03</div>
+                <div class="agenda-text">Products & Services</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">04</div>
+                <div class="agenda-text">Business Strategy</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">05</div>
+                <div class="agenda-text">Financial Projections</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">06</div>
+                <div class="agenda-text">Leadership Team</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">07</div>
+                <div class="agenda-text">Strategic Roadmap</div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-number">08</div>
+                <div class="agenda-text">Call to Action</div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-3">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Our Company</h1>
+            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. We are a forward-thinking organization dedicated to delivering innovative business solutions that drive measurable growth and competitive advantage.</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="image-section">
+                <img src="https://private-us-east-1.manuscdn.com/sessionFile/cHuLBhUXhP2My4H88u96vA/sandbox/slides_resource_ikcknf3adjh7nk2zbqzf8-49bc3fe6-e2b-prod-aws_1764589690404_na1fn_L2hvbWUvdWJ1bnR1L3Byb2plY3RfaW1hZ2VzL2NvbXBhbnlfdGVhbQ.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvY0h1TEJoVVhoUDJNeTRIODh1OTZ2QS9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pa2NrbmYzYWRqaDduazJ6YnF6ZjgtNDliYzNmZTYtZTJiLXByb2QtYXdzXzE3NjQ1ODk2OTA0MDRfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsWTNSZmFXMWhaMlZ6TDJOdmJYQmhibmxmZEdWaGJRLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE1NjAsaF8xNTYwL2Zvcm1hdCx3ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=FIbpHh-zRwvAvW5VdW9IA0Z09cp7VrrK-dKw0~8Toqa6xpxzigTKLjyljvL3~pL4DC2-VAiMv~cXPlNcOzczsOlqjzdu5fupvFsrYD7YzCUYlmw7aouQZAUryuEhaChg-UA~vqUpLSRMcuy7gWhftWPB0whEsnib81UBiN29Ehbh36oqNjytYe5IiUcAf~YYrSyPxhCoaQFqkWMcy2dOBBxouNHSlBNikcnpWznFHoZje99LRgJAkM~3yQsZ132gVtr8~VKkXRZ03R1U6HwUDqnru5UQaWFiUSASTnIM69ETecvzxA~oTGtbLBb~YYSOAU-KCQ2Ax0AsfUOASnPgjA__" alt="InnovateCorp Team" class="company-image">
+            </div>
+            <div class="metrics-section">
+                <div class="metric-box">
+                    <div class="metric-number">15+</div>
+                    <div class="metric-label">Years in Business</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-number">500+</div>
+                    <div class="metric-label">Team Members</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-4">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Market Overview</h1>
+            <p class="subtitle">Industry analysis and market opportunity</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="data-section">
+                <div>
+                    <div class="section-title">Market Growth Projection</div>
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Projected Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2021</td>
+                                <td>$2.1B</td>
+                            </tr>
+                            <tr>
+                                <td>2022</td>
+                                <td>$2.8B</td>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td>$3.6B</td>
+                            </tr>
+                            <tr>
+                                <td>2024</td>
+                                <td>$4.5B</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="data-section">
+                <div class="metric-card">
+                    <div class="metric-label">CAGR</div>
+                    <div class="metric-value">45%</div>
+                    <div class="metric-description">Compound Annual Growth Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total Addressable Market</div>
+                    <div class="metric-value">$12.3B</div>
+                    <div class="metric-description">By 2025</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <div class="insights-title">Key Market Insights</div>
+            <div class="insights-grid">
+                <div class="insight-item">
+                    <div class="insight-label">Market Demand</div>
+                    <div class="insight-text">Increasing demand for digital transformation solutions across all sectors</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-label">Competition</div>
+                    <div class="insight-text">Fragmented market with opportunity for consolidation and differentiation</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-label">Opportunity</div>
+                    <div class="insight-text">Emerging markets and vertical expansion present significant growth potential</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-5">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Our Products & Services</h1>
+            <p class="subtitle">Comprehensive solutions for business success</p>
+        </div>
+
+        <div class="offerings-grid">
+            <div class="offering-card">
+                <div class="offering-icon">📊</div>
+                <h2 class="offering-title">Analytics Platform</h2>
+                <p class="offering-description">Advanced data analytics and business intelligence tools for informed decision-making.</p>
+                <div class="offering-features">
+                    <div class="feature-item">Real-time dashboards</div>
+                    <div class="feature-item">Predictive analytics</div>
+                    <div class="feature-item">Custom reporting</div>
+                </div>
+                <div class="card-accent"></div>
+            </div>
+
+            <div class="offering-card">
+                <div class="offering-icon">🔧</div>
+                <h2 class="offering-title">Consulting Services</h2>
+                <p class="offering-description">Strategic consulting and implementation services to drive digital transformation.</p>
+                <div class="offering-features">
+                    <div class="feature-item">Strategy development</div>
+                    <div class="feature-item">Process optimization</div>
+                    <div class="feature-item">Change management</div>
+                </div>
+                <div class="card-accent"></div>
+            </div>
+
+            <div class="offering-card">
+                <div class="offering-icon">☁️</div>
+                <h2 class="offering-title">Cloud Solutions</h2>
+                <p class="offering-description">Scalable cloud infrastructure and managed services for enterprise applications.</p>
+                <div class="offering-features">
+                    <div class="feature-item">Infrastructure as a Service</div>
+                    <div class="feature-item">Platform as a Service</div>
+                    <div class="feature-item">24/7 Support</div>
+                </div>
+                <div class="card-accent"></div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-6">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Business Strategy</h1>
+            <p class="subtitle">Our strategic approach to market leadership</p>
+        </div>
+
+        <div class="strategy-grid">
+            <div class="strategy-item">
+                <div class="strategy-title">Market Expansion</div>
+                <p class="strategy-description">Penetrate new geographic markets and verticals through strategic partnerships and acquisitions.</p>
+                <div class="progress-container">
+                    <div class="progress-label">Progress: 75%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-fill-75"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-item">
+                <div class="strategy-title">Product Innovation</div>
+                <p class="strategy-description">Invest in R&amp;D to develop next-generation products with advanced AI and machine learning capabilities.</p>
+                <div class="progress-container">
+                    <div class="progress-label">Progress: 60%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-fill-60"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-item">
+                <div class="strategy-title">Customer Success</div>
+                <p class="strategy-description">Build long-term relationships through exceptional service delivery and continuous value creation.</p>
+                <div class="progress-container">
+                    <div class="progress-label">Progress: 85%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-fill-85"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-item">
+                <div class="strategy-title">Operational Excellence</div>
+                <p class="strategy-description">Optimize operations and reduce costs through automation and process improvements.</p>
+                <div class="progress-container">
+                    <div class="progress-label">Progress: 70%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-fill-70"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-7">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Financial Projections</h1>
+            <p class="subtitle">Key metrics and growth forecasts</p>
+        </div>
+
+        <div class="content-sections">
+            <!-- Revenue Forecast Section -->
+            <div class="section">
+                <div class="section-title">Revenue Forecast (in Millions)</div>
+                <div class="section-content">
+                    <div class="data-cell">
+                        <div class="data-value">$45M</div>
+                        <div class="data-label">2022</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-value">$68M</div>
+                        <div class="data-label">2023</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-value">$102M</div>
+                        <div class="data-label">2024</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-value">$155M</div>
+                        <div class="data-label">2025E</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Financial Metrics Section -->
+            <div class="section">
+                <div class="section-title">Key Financial Metrics</div>
+                <div class="section-content" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="data-cell">
+                        <div class="data-value">245%</div>
+                        <div class="data-label">Revenue Growth (3-Year CAGR)</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-value">$2.1B</div>
+                        <div class="data-label">Valuation (Series C Funding)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Performance Indicators Section -->
+            <div class="section">
+                <div class="section-title">Key Performance Indicators</div>
+                <div class="kpi-grid">
+                    <div class="kpi-item">
+                        <div class="kpi-value">92%</div>
+                        <div class="kpi-label">Customer Retention</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-value">3.2x</div>
+                        <div class="kpi-label">Magic Number (CAC Payback)</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-value">$45K</div>
+                        <div class="kpi-label">Average Contract Value</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-value">38%</div>
+                        <div class="kpi-label">Gross Margin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-8">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Leadership Team</h1>
+            <p class="subtitle">Experienced executives driving our vision</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="image-section">
+                <img src="https://private-us-east-1.manuscdn.com/sessionFile/cHuLBhUXhP2My4H88u96vA/sandbox/slides_resource_ikcknf3adjh7nk2zbqzf8-49bc3fe6-e2b-prod-aws_1764589707735_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL2Y4YkhFRk5hdEljVA.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvY0h1TEJoVVhoUDJNeTRIODh1OTZ2QS9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pa2NrbmYzYWRqaDduazJ6YnF6ZjgtNDliYzNmZTYtZTJiLXByb2QtYXdzXzE3NjQ1ODk3MDc3MzVfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMMlk0WWtoRlJrNWhkRWxqVkEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=Sk90ea0EyVTbEPZUlJD5lcDTpvAWtBgosU5MVHzvHxpMjbRuCiizKSuLNlwEvAk8OYNQ-XAWN-3TkU25JFO-hx6m6MSQ2WYPiTO2dXQmTAg~-lyqpQggZDjYMqDiDkB2o6RDG~J0mQ~qTlk-EyTlKEht7ZsdJq3wwcZwTwbVf6m7DF1r2zaUtT7h3IH5eiyas80XPmqYRns8q8X1jIkN6g-EHe1QqxYcF4xw6wwmvb0agRK5ttamfCiCHahgxzIXYu0MVgq1GgjqEOqFjEmWub5kw~Q3il3504hHHCzaZpkkX69ocmisFuxTz~qQwqsYjeUAEg7y9-QitDGSOj3QIw__" alt="Leadership Team" class="team-image">
+            </div>
+            <div class="info-section">
+                <div class="leadership-list">
+                    <div class="leader-item">
+                        <div class="leader-name">John Smith</div>
+                        <div class="leader-title">Chief Executive Officer</div>
+                        <div class="leader-experience">20+ years in tech industry</div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="leader-name">Sarah Johnson</div>
+                        <div class="leader-title">Chief Technology Officer</div>
+                        <div class="leader-experience">15+ years in software development</div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="leader-name">Michael Chen</div>
+                        <div class="leader-title">Chief Financial Officer</div>
+                        <div class="leader-experience">18+ years in finance</div>
+                    </div>
+                    <div class="leader-item">
+                        <div class="leader-name">Emily Davis</div>
+                        <div class="leader-title">Chief Marketing Officer</div>
+                        <div class="leader-experience">12+ years in marketing</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="stat-box">
+                        <div class="stat-value">18+</div>
+                        <div class="stat-label">Avg Experience</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-label">Team Size</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Global Offices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-9">
+            <div class="slide-container">
+        <div class="header">
+            <div class="accent-line"></div>
+            <h1 class="title">Strategic Roadmap</h1>
+            <p class="subtitle">Our path to market leadership</p>
+        </div>
+
+        <div class="timeline">
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-quarter">Q1 2025</div>
+                    <div class="milestone-title">Product Launch</div>
+                    <p class="milestone-description">Launch next-generation platform with AI-powered features and enhanced user experience.</p>
+                    <div class="tags-container">
+                        <span class="tag primary">Product Development</span>
+                        <span class="tag secondary">Beta Testing</span>
+                        <span class="tag tertiary">Market Launch</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-quarter">Q2 2025</div>
+                    <div class="milestone-title">Market Expansion</div>
+                    <p class="milestone-description">Expand into 5 new geographic markets and establish regional partnerships.</p>
+                    <div class="tags-container">
+                        <span class="tag primary">Geographic Expansion</span>
+                        <span class="tag secondary">Partnership Development</span>
+                        <span class="tag tertiary">Sales Growth</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-quarter">Q3 2025</div>
+                    <div class="milestone-title">Strategic Acquisition</div>
+                    <p class="milestone-description">Acquire complementary technology company to expand product portfolio and capabilities.</p>
+                    <div class="tags-container">
+                        <span class="tag primary">M&A Activity</span>
+                        <span class="tag secondary">Integration</span>
+                        <span class="tag tertiary">Synergy Realization</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-quarter">Q4 2025</div>
+                    <div class="milestone-title">IPO Preparation</div>
+                    <p class="milestone-description">Prepare for public market listing and achieve unicorn valuation milestone.</p>
+                    <div class="tags-container">
+                        <span class="tag primary">Regulatory Compliance</span>
+                        <span class="tag secondary">Financial Audit</span>
+                        <span class="tag tertiary">IPO Launch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+
+        <div class="slide" id="slide-10">
+            <div class="slide-container">
+        <div class="image-section">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/cHuLBhUXhP2My4H88u96vA/sandbox/slides_resource_ikcknf3adjh7nk2zbqzf8-49bc3fe6-e2b-prod-aws_1764589766785_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL0FlNms5cVl4NkV2cw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvY0h1TEJoVVhoUDJNeTRIODh1OTZ2QS9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pa2NrbmYzYWRqaDduazJ6YnF6ZjgtNDliYzNmZTYtZTJiLXByb2QtYXdzXzE3NjQ1ODk3NjY3ODVfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMMEZsTm1zNWNWbDROa1YyY3cuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=ZHQJrTV8N8qTLe02d-A9IIyn79DUNk3yfJiolLNQyZxSTku~wy8O24BZvqCr4VQLAAlI9mkI1pB49L3WtSDTJi16wz491LuqrXR4h50BJccSCrV-dH8S~fS37F~UvpOsvDoNHatzj14vYMoiRYl2UrD4PBOLmj1yLAoOccgw2WVpLvL6jIzbEAlZ7E9EpZTnHDEB8modXVVUls3H~i0ZX15b7KvJ6WQcyFwlvphFzwkxbZqK7LScjWGuLFnhCX5jEsCUAteFly~605e5-uwfyX2E-7EFFlmNVyfYPIaEbNTzQ4UXgjfMtpJNwyeVuh379HvSLb2EyOEiLFS4CQWQYw__" alt="InnovateCorp Team" class="team-image">
+        </div>
+        <div class="content-section">
+            <div class="accent-line"></div>
+            <h1 class="main-title">Let's Partner Together</h1>
+            <p class="cta-message">Join us in transforming the future of business through innovation and strategic excellence</p>
+            
+            <div class="contact-section">
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">hello@innovatecorp.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">+1 (555) 123-4567</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value">www.innovatecorp.com</div>
+                </div>
+            </div>
+
+            <div class="footer-note">© 2024 InnovateCorp. All rights reserved.</div>
+        </div>
+    </div>
+        </div>
+    
+        <!-- End Slide Content Injection Point -->
+
+        <button id="prev-button" class="nav-button">❮</button>
+        <button id="next-button" class="nav-button">❯</button>
+        <div id="slide-indicator">Slide 1 of 10</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const indicator = document.getElementById('slide-indicator');
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Show the current slide
+            slides[index].classList.add('active');
+
+            // Update indicator
+            indicator.textContent = `Slide ${index + 1} of ${totalSlides}`;
+
+            // Update button state
+            prevButton.disabled = index === 0;
+            nextButton.disabled = index === totalSlides - 1;
+            prevButton.style.display = index === 0 ? 'none' : 'block';
+            nextButton.style.display = index === totalSlides - 1 ? 'none' : 'block';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Event listeners for buttons
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initial display
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

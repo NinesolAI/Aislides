@@ -1,0 +1,4 @@
+openai_response.log
+.env
+__pycache__/
+.DS_Store

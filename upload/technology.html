@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technology Presentation</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Consolidated HTML Slideshow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* Global Reset and Base Styles (Consolidated from all files) */
         * {
             margin: 0;
             padding: 0;
@@ -13,1053 +14,1674 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0e27;
-            overflow: hidden;
-            transition: background-color 0.3s ease;
-        }
-
-        body.light-mode {
-            background: #f8fafc;
-        }
-
-        .slide-container {
-            width: 100vw;
-            height: 100vh;
-            display: none;
-            animation: fadeInScale 0.6s ease-out;
-        }
-
-        .slide-container.active {
-            display: flex;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .slide-nav {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 100;
-            background: rgba(10, 14, 39, 0.95);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        body.light-mode .slide-nav {
-            background: rgba(255, 255, 255, 0.95);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .slide-nav button {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .slide-nav button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
-        }
-
-        .slide-counter {
-            color: rgba(255, 255, 255, 0.6);
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        body.light-mode .slide-counter {
-            color: rgba(0, 0, 0, 0.6);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 100;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 24px;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0; /* Neutral background for the page */
         }
 
-        .theme-toggle:hover {
-            transform: rotate(20deg) scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        /* Presentation Container - Fixed size for a slide */
+        .presentation-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .gradient-text-2 {
-            background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .gradient-text-3 {
-            background: linear-gradient(135deg, #ff006e 0%, #ff0066 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tech-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
+        /* Slide Styles (Consolidated from all files) */
+        /* BEGIN CONSOLIDATED CSS */
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
             position: relative;
             overflow: hidden;
         }
 
-        .tech-card::before {
+        .slide-container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
-            transition: left 0.5s ease;
+            right: -100px;
+            top: -100px;
+            width: 400px;
+            height: 400px;
+            background: url('https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585550612_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL3ZjZk5tR1ViM0x1YQ.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU1NTA2MTJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMM1pqWms1dFIxVmlNMHgxWVEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=bYe6UUCBU9dtWq670rItjm7b8~bt3bbzqx59e~92wV4LgG0rNGXgNg~0o7gzeLFZealzegmdecCcCWBez4qtOTljJ~3a2nQZx5ycSjjBTSqZKzHGn53i8zhjtWWDyZTZtIrX5uv56Ujgf1oHzXzGo3RtNQcPfNyPzUjPELTAsttpIY1p9E~rLQNolhqN7cTltUlBzDa0uWgk32IGGb7-IJTn~oWlEev1vgn1rSmGrWo3nlkveMFJfTxxdiV9lqLivVdGqBxB-fzdcRsHei7cnEiATYUcjCIUa0ceUt~OL2lURxZZ-mzHMFqbEjs89zIdrzUMfDxEhIua8Ki~FNNauQ__') center/cover;
+            opacity: 0.15;
+            z-index: 0;
         }
 
-        .tech-card:hover::before {
-            left: 100%;
-        }
-
-        .tech-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.6);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
-        }
-
-        body.light-mode .tech-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-
-        body.light-mode .tech-card:hover {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 153, 255, 0.15) 100%);
-        }
-
-        .code-block {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 8px;
-            padding: 16px;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            color: #00ff88;
-            overflow-x: auto;
-            margin: 10px 0;
-        }
-
-        body.light-mode .code-block {
-            background: rgba(0, 0, 0, 0.05);
-            border-color: rgba(0, 212, 255, 0.2);
-            color: #0099ff;
-        }
-
-        .chart-bar {
-            display: flex;
-            align-items: flex-end;
-            gap: 15px;
-            height: 150px;
-            justify-content: center;
-        }
-
-        .bar {
-            width: 50px;
-            background: linear-gradient(180deg, #00d4ff 0%, #0099ff 100%);
-            border-radius: 8px 8px 0 0;
-            transition: all 0.3s ease;
+        .content {
             position: relative;
+            z-index: 1;
         }
 
-        .bar::after {
-            content: attr(data-value);
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #00d4ff;
-            font-size: 12px;
-            font-weight: bold;
+        .header {
+            margin-bottom: 24px;
         }
 
-        .bar:hover {
-            transform: scaleY(1.1);
-        }
-
-        .bar.bar-2 {
-            background: linear-gradient(180deg, #00ff88 0%, #00d4ff 100%);
-        }
-
-        .bar.bar-2::after {
-            color: #00ff88;
-        }
-
-        .bar.bar-3 {
-            background: linear-gradient(180deg, #ff006e 0%, #ff0066 100%);
-        }
-
-        .bar.bar-3::after {
-            color: #ff006e;
-        }
-
-        .bar.bar-4 {
-            background: linear-gradient(180deg, #ffd60a 0%, #ffc300 100%);
-        }
-
-        .bar.bar-4::after {
-            color: #ffd60a;
-        }
-
-        .feature-item {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
-            border-left: 3px solid #00ff88;
-            padding: 16px;
-            border-radius: 8px;
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
             margin-bottom: 12px;
-            transition: all 0.3s ease;
+            letter-spacing: -0.5px;
         }
 
-        .feature-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
         }
 
-        body.light-mode .feature-item {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
-            border-left-color: #00d4ff;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 30px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            border-radius: 50%;
-            border: 3px solid #0a0e27;
-        }
-
-        body.light-mode .timeline-item::before {
-            border-color: #f8fafc;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 20px;
-            width: 4px;
-            height: 30px;
-            background: rgba(0, 212, 255, 0.3);
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
         .stat-box {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 12px;
+            background: white;
+            border: 1px solid #CCCCCC;
             padding: 24px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.6);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
         .stat-number {
-            font-size: 36px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #0052CC;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
-        .challenge-box {
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(255, 0, 102, 0.1) 100%);
-            border: 1px solid rgba(255, 0, 110, 0.3);
-            border-radius: 12px;
+        .stat-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .stat-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333333;
+        }
+
+        .kpi-section {
+            background: white;
+            border: 1px solid #CCCCCC;
             padding: 20px;
+        }
+
+        .kpi-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A1A;
             margin-bottom: 16px;
-            transition: all 0.3s ease;
+            letter-spacing: -0.3px;
         }
 
-        .challenge-box:hover {
-            border-color: rgba(255, 0, 110, 0.6);
-            box-shadow: 0 8px 20px rgba(255, 0, 110, 0.2);
-        }
-
-        .solution-box {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            border-radius: 12px;
-            padding: 20px;
+        .kpi-item {
             margin-bottom: 16px;
-            transition: all 0.3s ease;
         }
 
-        .solution-box:hover {
-            border-color: rgba(0, 255, 136, 0.6);
-            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
+        .kpi-item:last-child {
+            margin-bottom: 0;
         }
 
-        .button-primary {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .kpi-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .kpi-percentage {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0052CC;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #E0E0E0;
             border: none;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
 
-        .button-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0052CC 0%, #003D99 100%);
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
         }
 
-        .button-secondary {
-            background: transparent;
-            color: #00d4ff;
-            padding: 14px 32px;
-            border-radius: 8px;
-            border: 2px solid #00d4ff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .header {
+            margin-bottom: 40px;
         }
 
-        .button-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
 
-        body.light-mode .button-secondary {
-            color: #0099ff;
-            border-color: #0099ff;
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
         }
 
-        body.light-mode .button-secondary:hover {
-            background: rgba(0, 153, 255, 0.1);
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
         }
 
-        .diagram-placeholder {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
-            border: 2px dashed rgba(0, 212, 255, 0.5);
-            border-radius: 12px;
+        .image-section {
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            gap: 12px;
-            padding: 40px;
-            text-align: center;
-            min-height: 250px;
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 20px;
         }
 
-        body.light-mode .diagram-placeholder {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
-            border-color: rgba(0, 212, 255, 0.3);
+        .image-section img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+        }
+
+        .components-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .component-card {
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .component-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .component-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .component-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .accent-bar {
+            width: 4px;
+            height: 100%;
+            background: #0052CC;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .feature-dot {
+            width: 8px;
+            height: 8px;
+            background: #0052CC;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #1A1A1A;
+            line-height: 1.5;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            max-height: 600px;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .specifications {
+            background: #1A1A1A;
+            border: 1px solid #333333;
+            padding: 20px;
+        }
+
+        .spec-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #F2F2F2;
+            margin-bottom: 16px;
+        }
+
+        .spec-code {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #0052CC;
+            line-height: 1.53; /* Reduced from 1.8 to fit within 720px total height */
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .right-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 20px;
+        }
+
+        .right-content img {
+            width: 100%;
+            height: 575px; /* Reduced from 600px to balance column height */
+            object-fit: contain;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-box {
+            background: white;
+            border: 2px solid #0052CC;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #0052CC;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin-bottom: 6px;
+        }
+
+        .stat-growth {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #0052CC;
+        }
+
+        .insights-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .insights-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .insight-item {
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 16px;
+        }
+
+        .insight-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .insight-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.4;
+        }
+
+        .right-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 600px;
+            background: white;
+            border: 1px solid #CCCCCC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            flex: 1;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .card-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #0052CC;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .accent-bar {
+            position: absolute;
+            width: 4px;
+            height: 60px;
+            background: #0052CC;
+            left: 0;
+            top: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #1A1A1A 0%, #333333 100%);
+            background-image: url('https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585613792_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL1E0eU1OSVFhVzJOQQ.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU2MTM3OTJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMMUUwZVUxT1NWRmhWekpPUVEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=o2A464zGLSz4C2~rb3GcREzu7~Xl2Fv0rKKaU4DLQ--p-yppgk5gxPax74yVbXOR7DAT7v70GznSvgjYdj-2WiM4sA35qv1R3SOJbP3kwKLAXzJtlnBoGxkbWXJCoLABVTQxY4ID~xabxdvZY-ULGdqRkh7TNBb8O8Y3k-qtpbTSWj1H0P8ccuvWxE-Asg5MrUA3gdL3YeMlELf2tUyrmyP9YU2jpnR6wOc0h4yYTz9LYn6qN9oQ7pqqDEdP9jlRhy~InVQi629ktKV5XV~vZSzoguglUnHNXi1ivwf5Jd6xR0P4UuYVGRzs3gGWJCvb0XH7nEw2aCJN3vdrIWBG~w__');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(51, 51, 51, 0.75) 100%);
+            z-index: 1;
+        }
+
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 82, 204, 0.15) 100%);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #F2F2F2;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: #0052CC;
+            line-height: 1.4;
+            margin-bottom: 60px;
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .contact-item {
+            background: rgba(242, 242, 242, 0.05);
+            border: 1px solid rgba(0, 82, 204, 0.3);
+            padding: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0052CC;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .contact-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #F2F2F2;
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 48px;
+            background: #0052CC;
+            color: #F2F2F2;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #003D99;
+            transform: translateY(-2px);
+        }
+
+        .accent-shape {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            width: 100px;
+            height: 100px;
+            background: #0052CC;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .accent-line {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            width: 80px;
+            height: 4px;
+            background: #0052CC;
+            z-index: 2;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #F2F2F2 0%, #E8E8E8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 60px;
+            text-align: left;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #1A1A1A;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: #333333;
+            line-height: 1.4;
+            margin-bottom: 48px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .button-primary {
+            background: #0052CC;
+            color: #F2F2F2;
+        }
+
+        .button-primary:hover {
+            background: #003D99;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 82, 204, 0.3);
+        }
+
+        .button-secondary {
+            background: #1A1A1A;
+            color: #F2F2F2;
+            border: 2px solid #333333;
+        }
+
+        .button-secondary:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(26, 26, 26, 0.3);
+        }
+
+        .accent-shape {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #0052CC;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            opacity: 0.1;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px; /* keep upper title padding consistent */
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* reduced vertical gap to save height */
+            flex: 1;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #0052CC;
+        }
+
+        .quarter {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .quarter-marker {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 40px;
+            height: 40px;
+            background: #0052CC;
+            border: 4px solid #F2F2F2;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .quarter-content {
+            background: white;
+            border: 1px solid #CCCCCC;
+            padding: 16px; /* reduced inner padding to shrink block height */
+            flex: 1;
+        }
+
+        .quarter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .quarter-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .badge {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 8px 16px;
-            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
             font-size: 12px;
             font-weight: 600;
-            margin-right: 8px;
+            background: #0052CC;
+            color: #F2F2F2;
+            padding: 6px 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #F2F2F2;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            background: url('https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585613792_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL2ZQTGhJQk9mYTZHcw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU2MTM3OTJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMMlpRVEdoSlFrOW1ZVFpIY3cuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=a~L0ZdMsC5ppAe3mdRa1Blanv-6yPhi9LQMOEVkzjS85b~hs39vGLt75R0cKYHV0z8WMO4FfdFw8bvfV1xEwqAU6q5RSOI8gua0-Fv5cC2gGKG0Ad18ZRogq7vLTD-gk8yI2-GQt1TJ1Oub5OSMHgvPLW9c1TbLc0Vq5nMNG-zCP1voOIwS4m1mBMpozNwvbv~LO3Is5RIxTtrqSkCwQqcCs1QM6tapXhFZe40LNMzDOW04rcQHKkfO8-5zJR3G-VQWlcXVtiEF6DhnpW2QPBvUfQUy-0Z0M7kDTKDPLhYBFklQ2Jf1fMf5KuqFswZQEq4RZ19xB4aMG2cry3TROxA__') center/cover;
+            opacity: 0.12;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #333333;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            flex: 1;
+        }
+
+        .challenge-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .challenge-box {
+            background: white;
+            border: 2px solid #FF4444;
+            border-left: 6px solid #FF4444;
+            padding: 24px;
+        }
+
+        .solution-box {
+            background: white;
+            border: 2px solid #0052CC;
+            border-left: 6px solid #0052CC;
+            padding: 24px;
+        }
+
+        .box-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 8px;
-            transition: all 0.3s ease;
         }
 
-        .badge:hover {
-            border-color: rgba(0, 212, 255, 0.6);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
+        .challenge-label {
+            color: #FF4444;
         }
 
-        body.light-mode .badge {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
-            color: #0099ff;
+        .solution-label {
+            color: #0052CC;
         }
 
-        .text-light {
-            color: rgba(255, 255, 255, 0.9);
+        .box-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            line-height: 1.3;
         }
 
-        body.light-mode .text-light {
-            color: rgba(0, 0, 0, 0.9);
+        .box-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.6;
         }
 
-        .text-muted {
-            color: rgba(255, 255, 255, 0.6);
+        .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        /* END CONSOLIDATED CSS */
+
+        /* Navigation Button Styles */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 82, 204, 0.8);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            transition: background 0.3s;
+            user-select: none;
         }
 
-        body.light-mode .text-muted {
-            color: rgba(0, 0, 0, 0.6);
+        .nav-button:hover {
+            background: #003D99;
+        }
+
+        #prev-button {
+            left: 0;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        #next-button {
+            right: 0;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        /* Slide Visibility */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
-
-    <!-- Slide 1: Cover Slide -->
-    <div class="slide-container active">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
-            <!-- Background Elements -->
-            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+    <div class="presentation-container">
+        <!-- Slides will be inserted here -->
+        <div id="slides-container">
+            <div class="slide active">
+                <div class="slide-container">
+                    <div class="accent-shape"></div>
+                    <div class="content">
+                        <h1 class="title">Lorem Ipsum Dolor Sit Amet</h1>
+                        <p class="subtitle">Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore</p>
+                        <div class="button-group">
+                            <button class="button button-primary">Lorem Ipsum</button>
+                            <button class="button button-secondary">Dolor Sit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="header">
+                        <h1 class="title">Phasellus Eget</h1>
+                        <p class="subtitle">Quisque In Ipsum Vitae</p>
+                    </div>
             
-            <div class="relative z-10 text-center">
-                <div class="mb-6">
-                    <div class="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white text-sm font-semibold mb-8">
-                        Next Generation Technology
-                    </div>
-                </div>
-                <h1 class="text-7xl font-black mb-6 gradient-text">
-                    AI-Powered Innovation
-                </h1>
-                <p class="text-2xl text-gray-300 mb-12 max-w-2xl">
-                    Transforming Industries with Cutting-Edge Technology & Machine Learning
-                </p>
-                <div class="flex gap-6 justify-center">
-                    <button class="button-primary">Explore Technology</button>
-                    <button class="button-secondary">Learn More</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 2: Agenda / Outline -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-4xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">Agenda</h2>
-                <p class="text-muted mb-12 text-lg">Overview of today's presentation</p>
-                
-                <div class="grid grid-cols-2 gap-8">
-                    <div class="tech-card">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl font-black gradient-text">01</div>
-                            <div>
-                                <h3 class="text-xl font-bold text-light mb-2">Company Overview</h3>
-                                <p class="text-muted">Understanding our vision and mission</p>
-                            </div>
+                    <div class="grid">
+                        <div class="card">
+                            <div class="card-number">01</div>
+                            <h3 class="card-title">Vestibulum Ante Ipsum</h3>
+                            <p class="card-description">Primis In Faucibus</p>
                         </div>
-                    </div>
-
-                    <div class="tech-card">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl font-black gradient-text-2">02</div>
-                            <div>
-                                <h3 class="text-xl font-bold text-light mb-2">Industry Trends</h3>
-                                <p class="text-muted">Market insights and data analysis</p>
-                            </div>
+            
+                        <div class="card">
+                            <div class="card-number">02</div>
+                            <h3 class="card-title">Orci Luctus Et</h3>
+                            <p class="card-description">Ultrices Posuere Cubilia</p>
                         </div>
-                    </div>
-
-                    <div class="tech-card">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl font-black gradient-text-3">03</div>
-                            <div>
-                                <h3 class="text-xl font-bold text-light mb-2">Product Features</h3>
-                                <p class="text-muted">Key capabilities and specifications</p>
-                            </div>
+            
+                        <div class="card">
+                            <div class="card-number">03</div>
+                            <h3 class="card-title">Curae Proin</h3>
+                            <p class="card-description">Velit Eget Turpis</p>
                         </div>
-                    </div>
-
-                    <div class="tech-card">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl font-black gradient-text">04</div>
-                            <div>
-                                <h3 class="text-xl font-bold text-light mb-2">Roadmap & Vision</h3>
-                                <p class="text-muted">Future plans and innovation timeline</p>
-                            </div>
+            
+                        <div class="card">
+                            <div class="card-number">04</div>
+                            <h3 class="card-title">Egestas Sed</h3>
+                            <p class="card-description">Quam In Erat</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Slide 3: Tech Company / Product Overview -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-12 py-20">
-            <div class="max-w-5xl w-full grid grid-cols-2 gap-12 items-center">
-                <!-- Left Side: Content -->
-                <div>
-                    <h2 class="text-5xl font-black mb-6 gradient-text">About Our Technology</h2>
-                    <p class="text-light mb-6 leading-relaxed text-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our platform leverages advanced machine learning algorithms and cloud infrastructure to deliver unprecedented performance and scalability.
-                    </p>
-                    <p class="text-light mb-8 leading-relaxed text-lg">
-                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We are committed to pushing the boundaries of what's possible in technology innovation.
-                    </p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
-                            <span class="text-light">Enterprise-grade security and compliance</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
-                            <span class="text-light">99.99% uptime guarantee with SLA</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
-                            <span class="text-light">Global infrastructure with 50+ data centers</span>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="content">
+                        <h1 class="title">Mauris Commodo</h1>
+                        
+                        <p class="description">Nullam ac tortor vitae purus faucibus ornare. Sed egestas egestas ante, sit amet semper est mollis a. Vivamus at lectus non leo tristique finibus.</p>
+                        
+                        <p class="description">Aliquam erat volutpat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        
+                        <div class="features">
+                            <div class="feature-item">
+                                <div class="feature-dot"></div>
+                                <span class="feature-text">Fusce Tincidunt Erat</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-dot"></div>
+                                <span class="feature-text">Nec Tincidunt Erat</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-dot"></div>
+                                <span class="feature-text">Aliquam Erat Volutpat</span>
+                            </div>
                         </div>
                     </div>
-                    <button class="button-primary">Discover More</button>
-                </div>
-
-                <!-- Right Side: Image Placeholder -->
-                <div class="diagram-placeholder">
-                    <div class="text-6xl">💻</div>
-                    <p class="text-light font-semibold">Product Image Placeholder</p>
-                    <p class="text-muted text-sm">Replace with product screenshot or demo</p>
+            
+                    <div class="image-container">
+                        <img src="https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585528610_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzLzBrY2VpRWROVUZwOQ.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU1Mjg2MTBfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMekJyWTJWcFJXUk9WVVp3T1EuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=g5LPPE-nVsux6vQBDELuN0XpXfUKAFx5O3AlAr7UTebhdwJ~P2QQv56bOjiuvIChZ6~QzaV4Ml8TT9JX8VAOjTMAzWjvG579E~HlsG~~IDf3SDwYAvgkOGar8KHfjQQMzH4yHL2~R8lp4qgAj9zZ1MfOJgzXL3bTrmUE8LqZvR3uPvev81xQVQDiAAxZTat9mYCURru9LEHNQXNOYXtt~9e5XArg04S79s1LxIKnVXEgigkE9WAZ10GfdJEbdpB82-6ey7ojtkLiFQ3PDrlSO63TrdgBgJXk1J9491QJFmtaKhJKuK8YOpirc-XKy5EmQ0X8viGVTFfDQSzdzN924w__" alt="Lorem Ipsum">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Slide 4: Industry Trends & Insights -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-5xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">Industry Trends & Insights</h2>
-                <p class="text-muted mb-12 text-lg">Market analysis and growth projections</p>
-
-                <div class="grid grid-cols-2 gap-8 mb-12">
-                    <!-- Chart -->
-                    <div class="tech-card">
-                        <h3 class="text-xl font-bold text-light mb-8">Market Growth Trajectory</h3>
-                        <div class="chart-bar">
-                            <div class="bar" data-value="45%"></div>
-                            <div class="bar bar-2" data-value="62%"></div>
-                            <div class="bar bar-3" data-value="78%"></div>
-                            <div class="bar bar-4" data-value="95%"></div>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="left-content">
+                        <div class="header">
+                            <h1 class="title">Orci Luctus Et & Insights</h1>
+                            <p class="subtitle">Vitae Purus Faucibus</p>
                         </div>
-                        <div class="flex justify-between mt-6 text-sm text-muted">
-                            <span>2021</span>
-                            <span>2022</span>
-                            <span>2023</span>
-                            <span>2024</span>
+            
+                        <div class="stats-section">
+                            <div class="stat-box">
+                                <div class="stat-number">$2.5T</div>
+                                <div class="stat-label">Global Market Size</div>
+                                <div class="stat-growth">↑ 35% YoY Growth</div>
+                            </div>
+            
+                            <div class="stat-box">
+                                <div class="stat-number">500M+</div>
+                                <div class="stat-label">Lorem Users Worldwide</div>
+                                <div class="stat-growth">↑ 42% YoY Growth</div>
+                            </div>
+                        </div>
+            
+                        <div class="insights-section">
+                            <div class="insights-title">Egestas Ante Sit</div>
+                            <div class="insights-grid">
+                                <div class="insight-item">
+                                    <div class="insight-label">Semper Est Mollis</div>
+                                    <div class="insight-text">78% of enterprises deploying Lorem Ipsum</div>
+                                </div>
+                                <div class="insight-item">
+                                    <div class="insight-label">Vivamus At Lectus</div>
+                                    <div class="insight-text">92% workloads moving to Dolor Sit</div>
+                                </div>
+                                <div class="insight-item">
+                                    <div class="insight-label">Data Growth</div>
+                                    <div class="insight-text">Data volume doubling every 2 years</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Stats -->
-                    <div class="space-y-4">
-                        <div class="stat-box">
-                            <div class="stat-number">$2.5T</div>
-                            <p class="text-muted mt-4 mb-2">Global Market Size</p>
-                            <p class="text-xs text-cyan-400">↑ 35% YoY Growth</p>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">500M+</div>
-                            <p class="text-muted mt-4 mb-2">Active Users Worldwide</p>
-                            <p class="text-xs text-cyan-400">↑ 42% YoY Growth</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Key Insights -->
-                <div class="bg-gradient-to-r from-cyan-500/5 to-blue-500/5 border border-cyan-500/20 rounded-xl p-8">
-                    <h3 class="text-xl font-bold text-light mb-4">Key Market Insights</h3>
-                    <div class="grid grid-cols-3 gap-6">
-                        <div>
-                            <p class="text-light font-semibold mb-2">AI Adoption</p>
-                            <p class="text-muted text-sm">78% of enterprises deploying AI solutions</p>
-                        </div>
-                        <div>
-                            <p class="text-light font-semibold mb-2">Cloud Migration</p>
-                            <p class="text-muted text-sm">92% workloads moving to cloud platforms</p>
-                        </div>
-                        <div>
-                            <p class="text-light font-semibold mb-2">Data Growth</p>
-                            <p class="text-muted text-sm">Data volume doubling every 2 years</p>
+            
+                    <div class="right-content">
+                        <div class="image-container">
+                            <img src="https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585550612_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL3JrSEVvTzVJV0pLbA.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU1NTA2MTJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMM0pyU0VWdlR6VkpWMHBMYkEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=i1otIIv7Vw~q75W4gc~T90a7k3kIDWEQrLlisglDAyZqNBXSG6Z4GGGJgvIFHdEE87fN0Ra5mPcp9lQFyHVS2cDM2KaZo2x501xOSAQztsWvHciZ7fj8PzwpIanABY7uBUuE6IX4~u3Uv6~Xm8WwfobhseWqOvuOc-E9iWq0hu5vJYXaOYrzZrmdU8ibTCVSTdhDk6s3f7HwwRWfjYjD3SkbTaSV5HZkPxZL0HE7QCVuQaCy5Btixk6RhPXU2DWSeiUXWCXf73PIyDgUPb~OuzQSegIhMfU4PQoPSYn8t0WaU877AIze7bET2mTMZfwk53f-~1FmHglZp9cxh34yA__" alt="Futuristic Technology Core">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Slide 5: Product Features / Specifications -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-5xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">Product Features & Specifications</h2>
-                <p class="text-muted mb-12 text-lg">Powerful capabilities designed for enterprise</p>
-
-                <div class="grid grid-cols-2 gap-8 mb-12">
-                    <!-- Feature 1 -->
-                    <div class="feature-item">
-                        <div class="flex items-start gap-4">
-                            <div class="text-2xl">⚡</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-light mb-2">Ultra-Fast Processing</h4>
-                                <p class="text-muted text-sm">Sub-millisecond latency with GPU acceleration</p>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="left-content">
+                        <div class="header">
+                            <h1 class="title">Curae Proin & Specifications</h1>
+                            <p class="subtitle">Erat Volutpat Ut Enim</p>
+                        </div>
+            
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <h3 class="feature-title">Ad Minim Veniam</h3>
+                                <p class="feature-description">Quis Nostrud Exercitation</p>
+                            </div>
+            
+                            <div class="feature-card">
+                                <div class="feature-icon">🔒</div>
+                                <h3 class="feature-title">Ullamco Laboris Nisi</h3>
+                                <p class="feature-description">Ut Aliquip Ex Ea</p>
+                            </div>
+            
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h3 class="feature-title">Commodo Consequat</h3>
+                                <p class="feature-description">Duis Aute Irure</p>
+                            </div>
+            
+                            <div class="feature-card">
+                                <div class="feature-icon">🌐</div>
+                                <h3 class="feature-title">In Reprehenderit</h3>
+                                <p class="feature-description">In Voluptate Velit</p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="feature-item">
-                        <div class="flex items-start gap-4">
-                            <div class="text-2xl">🔒</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-light mb-2">Military-Grade Security</h4>
-                                <p class="text-muted text-sm">End-to-end encryption and zero-trust architecture</p>
-                            </div>
+            
+                        <div class="specifications">
+                            <h3 class="spec-title">Esse Cillum Dolore</h3>
+                            <div class="spec-code">{
+              "platform": "Lorem-Ipsum",
+              "architecture": "Dolor-Sit",
+              "language": "Lorem, Ipsum, Dolor",
+              "database": "Sit-Amet, Consectetur",
+              "api": "Adipiscing, Elit, Sed",
+              "deployment": "Eiusmod, Tempor"
+            }</div>
                         </div>
                     </div>
-
-                    <!-- Feature 3 -->
-                    <div class="feature-item">
-                        <div class="flex items-start gap-4">
-                            <div class="text-2xl">📊</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-light mb-2">Advanced Analytics</h4>
-                                <p class="text-muted text-sm">Real-time insights with predictive analytics</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="feature-item">
-                        <div class="flex items-start gap-4">
-                            <div class="text-2xl">🌐</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-light mb-2">Global Scalability</h4>
-                                <p class="text-muted text-sm">Handles billions of transactions per second</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technical Specifications -->
-                <div class="tech-card">
-                    <h3 class="text-xl font-bold text-light mb-4">Technical Specifications</h3>
-                    <div class="code-block">
-{
-  "platform": "Cloud-Native",
-  "architecture": "Microservices",
-  "language": "Python, Go, Rust",
-  "database": "PostgreSQL, MongoDB",
-  "api": "REST, GraphQL, gRPC",
-  "deployment": "Kubernetes, Docker"
-}
+            
+                    <div class="right-content">
+                        <img src="https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585550612_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL1U5cTBLcDN0M0hRQw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU1NTA2MTJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMMVU1Y1RCTGNETjBNMGhSUXcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=vKjWLWs8hTgh3CcWKu9A43aKmG~-oziVWVQdL~rzjW79HYt0jhU1xBjqDA4ISPA5e-H0ZN2UU1FtFH85O~PSfdTk7gC3P3ar0j5GZbTEb4r8bvsl8ndSbpzblYZOYQCLfNHgki5nfx6mE8B7JoQh5qYMZX56lMDAHJLKsh17Ldvotm3H8PtCVVT8VKd8UcL7DYLpfl8s65e7A-n35rLIC02YOSp7FJTr4Xcr5x0lm-q4kjqvh~lt1EMKU4VeLktfHEzpR0P4UuYVGRzs3gGWJCvb0XH7nEw2aCJN3vdrIWBG~w__" alt="Technical Specifications">
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Slide 6: Architecture / Workflow Diagrams -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-5xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">System Architecture</h2>
-                <p class="text-muted mb-12 text-lg">Scalable and resilient infrastructure design</p>
-
-                <div class="grid grid-cols-2 gap-8">
-                    <!-- Architecture Diagram -->
-                    <div class="diagram-placeholder">
-                        <div class="text-5xl">🏗️</div>
-                        <p class="text-light font-semibold">Architecture Diagram</p>
-                        <p class="text-muted text-sm">System design and components</p>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="header">
+                        <h1 class="title">Excepteur Sint</h1>
+                        <p class="subtitle">Occaecat Cupidatat</p>
                     </div>
-
-                    <!-- Workflow Diagram -->
-                    <div class="diagram-placeholder">
-                        <div class="text-5xl">🔄</div>
-                        <p class="text-light font-semibold">Workflow Diagram</p>
-                        <p class="text-muted text-sm">Data flow and processing pipeline</p>
-                    </div>
-
-                    <!-- Component Details -->
-                    <div class="tech-card col-span-2">
-                        <h3 class="text-xl font-bold text-light mb-4">Core Components</h3>
-                        <div class="grid grid-cols-4 gap-4">
-                            <div class="text-center">
-                                <div class="text-3xl mb-2">🖥️</div>
-                                <p class="text-sm text-light font-semibold">API Gateway</p>
-                                <p class="text-xs text-muted">Request routing</p>
+            
+                    <div class="content-grid">
+                        <div class="image-section">
+                            <img src="https://private-us-east-1.manuscdn.com/sessionFile/MrfUDpvW7Pmg48ZBTiOGUC/sandbox/slides_resource_ighag1caodorn9quas5v3-b0d7a3c6-e2b-prod-aws_1764585550612_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL3ZIYXlUWVFkRW1yNw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTXJmVURwdlc3UG1nNDhaQlRpT0dVQy9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pZ2hhZzFjYW9kb3JuOXF1YXM1djMtYjBkN2EzYzYtZTJiLXByb2QtYXdzXzE3NjQ1ODU1NTA2MTJfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzVndiRzloWkM5elpXRnlZMmhmYVcxaFoyVnpMM1pJWVhsVVdWRmtSVzF5TncuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=Z69RTBTs0rl-qn5t~KwzXPytqFBdNG1JVYr2XhsF1koUQE5K4249qZpqMnxcNhYiuN4NhcIJQ07lKqRF-pzBRTYqy03gGtkxIzkDfQ9LdQcJGUqX9gdcvMZVjTtgQZHiWRUFMMs~RzPO4IpCDeIdKvAunTTeOmcbHYSwfXizweQg7G89yJq3ql2slCQ~Qs5qfCHgfm~ZLPMu9wHG8D6AOUR8rP1ooDjuEcSgNwT7W7ubvdETSb09c6NGVpkJLtY5mhl-cnvCN7Rt7aOMqoAl4B~ZwMzM4V-mNDDwS2BODGjpYMr8DvAzHZgHj-ZrwboscLhpLNCS1uT6k7tBb-YRPg__" alt="Architecture Diagram">
+                        </div>
+            
+                        <div class="components-section">
+                            <div class="component-card">
+                                <div class="component-icon">🖥️</div>
+                                <h3 class="component-title">Deserunt Mollit</h3>
+                                <p class="component-description">Anim Id Est</p>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl mb-2">⚙️</div>
-                                <p class="text-sm text-light font-semibold">Processing Engine</p>
-                                <p class="text-xs text-muted">Core computation</p>
+            
+                            <div class="component-card">
+                                <div class="component-icon">⚙️</div>
+                                <h3 class="component-title">Laborum</h3>
+                                <p class="component-description">Sed Ut Perspiciatis</p>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl mb-2">💾</div>
-                                <p class="text-sm text-light font-semibold">Data Layer</p>
-                                <p class="text-xs text-muted">Storage & caching</p>
+            
+                            <div class="component-card">
+                                <div class="component-icon">💾</div>
+                                <h3 class="component-title">Data Layer</h3>
+                                <p class="component-description">Storage & caching</p>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl mb-2">📡</div>
-                                <p class="text-sm text-light font-semibold">Message Queue</p>
-                                <p class="text-xs text-muted">Event streaming</p>
+            
+                            <div class="component-card">
+                                <div class="component-icon">📡</div>
+                                <h3 class="component-title">Message Queue</h3>
+                                <p class="component-description">Event streaming</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Slide 7: Innovation Roadmap / Timeline -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-4xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">Innovation Roadmap</h2>
-                <p class="text-muted mb-12 text-lg">Our vision for the next 24 months</p>
-
-                <div class="space-y-8">
-                    <!-- Q1 -->
-                    <div class="timeline-item">
-                        <div class="tech-card">
-                            <h3 class="text-2xl font-bold text-light mb-2">Q1 2025 - Foundation</h3>
-                            <p class="text-muted mb-4">Building core infrastructure and platform stability</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge">API v2.0</span>
-                                <span class="badge">Performance Optimization</span>
-                                <span class="badge">Security Audit</span>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="header">
+                        <h1 class="title">Totam Rem Aperiam</h1>
+                        <p class="subtitle">Eaque Ipsa Quae</p>
+                    </div>
+            
+                    <div class="timeline">
+                        <div class="quarter">
+                            <div class="quarter-marker">Q1</div>
+                            <div class="quarter-content">
+                                <h3 class="quarter-title">Q1 2025 - Lorem</h3>
+                                <p class="quarter-description">Quis Autem Vel Eum Iure Reprehenderit</p>
+                                <div class="badges">
+                                    <span class="badge">Ipsum v2.0</span>
+                                    <span class="badge">Dolor Optimization</span>
+                                    <span class="badge">Sit Audit</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Q2 -->
-                    <div class="timeline-item">
-                        <div class="tech-card">
-                            <h3 class="text-2xl font-bold text-light mb-2">Q2 2025 - Expansion</h3>
-                            <p class="text-muted mb-4">Introducing new features and market expansion</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge">AI Features</span>
-                                <span class="badge">Mobile App</span>
-                                <span class="badge">Enterprise Edition</span>
+            
+                        <div class="quarter">
+                            <div class="quarter-marker">Q2</div>
+                            <div class="quarter-content">
+                                <h3 class="quarter-title">Q2 2025 - Ipsum</h3>
+                                <p class="quarter-description">Qui In Ea Voluptate Velit Esse Quam Nihil Molestiae</p>
+                                <div class="badges">
+                                    <span class="badge">Lorem Features</span>
+                                    <span class="badge">Dolor App</span>
+                                    <span class="badge">Sit Edition</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Q3 -->
-                    <div class="timeline-item">
-                        <div class="tech-card">
-                            <h3 class="text-2xl font-bold text-light mb-2">Q3 2025 - Innovation</h3>
-                            <p class="text-muted mb-4">Cutting-edge features and strategic partnerships</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge">ML Integration</span>
-                                <span class="badge">Blockchain Support</span>
-                                <span class="badge">Partner Ecosystem</span>
+            
+                        <div class="quarter">
+                            <div class="quarter-marker">Q3</div>
+                            <div class="quarter-content">
+                                <h3 class="quarter-title">Q3 2025 - Dolor</h3>
+                                <p class="quarter-description">Consequatur Vel Illum Qui Dolorem Eum Fugiat Quo Voluptas Nulla Pariatur</p>
+                                <div class="badges">
+                                    <span class="badge">Ipsum Integration</span>
+                                    <span class="badge">Dolor Support</span>
+                                    <span class="badge">Sit Ecosystem</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Q4 -->
-                    <div class="timeline-item">
-                        <div class="tech-card">
-                            <h3 class="text-2xl font-bold text-light mb-2">Q4 2025 - Leadership</h3>
-                            <p class="text-muted mb-4">Market leadership and next-generation capabilities</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge">Quantum Ready</span>
-                                <span class="badge">Global Expansion</span>
-                                <span class="badge">IPO Preparation</span>
+            
+                        <div class="quarter">
+                            <div class="quarter-marker">Q4</div>
+                            <div class="quarter-content">
+                                <h3 class="quarter-title">Q4 2025 - Sit</h3>
+                                <p class="quarter-description">At Vero Eos Et Accusamus Et Iusto Odio Dignissimos Ducimus Qui Blanditiis</p>
+                                <div class="badges">
+                                    <span class="badge">Lorem Ready</span>
+                                    <span class="badge">Ipsum Expansion</span>
+                                    <span class="badge">Dolor Preparation</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Slide 8: Market Adoption / Statistics -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-5xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">Market Adoption & Statistics</h2>
-                <p class="text-muted mb-12 text-lg">Proven success and rapid growth metrics</p>
-
-                <div class="grid grid-cols-2 gap-8 mb-12">
-                    <!-- Stat 1 -->
-                    <div class="stat-box">
-                        <div class="stat-number">10M+</div>
-                        <p class="text-muted mt-4 mb-2">Active Users</p>
-                        <p class="text-xs text-cyan-400">↑ 150% YoY</p>
-                    </div>
-
-                    <!-- Stat 2 -->
-                    <div class="stat-box">
-                        <div class="stat-number">$500M</div>
-                        <p class="text-muted mt-4 mb-2">Annual Revenue</p>
-                        <p class="text-xs text-cyan-400">↑ 200% YoY</p>
-                    </div>
-
-                    <!-- Stat 3 -->
-                    <div class="stat-box">
-                        <div class="stat-number">98%</div>
-                        <p class="text-muted mt-4 mb-2">Customer Satisfaction</p>
-                        <p class="text-xs text-cyan-400">Industry Leading</p>
-                    </div>
-
-                    <!-- Stat 4 -->
-                    <div class="stat-box">
-                        <div class="stat-number">50+</div>
-                        <p class="text-muted mt-4 mb-2">Enterprise Clients</p>
-                        <p class="text-xs text-cyan-400">Fortune 500 Companies</p>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="content">
+                        <div class="header">
+                            <h1 class="title">Temporibus Autem Quibusdam</h1>
+                            <p class="subtitle">Et Aut Officiis Debitis Aut Rerum Necessitatibus Saepe Eveniet</p>
+                        </div>
+            
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">10M+</div>
+                                <div class="stat-label">Lorem Users</div>
+                                <div class="stat-description">↑ 150% YoY</div>
+                            </div>
+            
+                            <div class="stat-box">
+                                <div class="stat-number">$500M</div>
+                                <div class="stat-label">Annual Revenue</div>
+                                <div class="stat-description">↑ 200% YoY</div>
+                            </div>
+            
+                            <div class="stat-box">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Dolor Satisfaction</div>
+                                <div class="stat-description">Industry Leading</div>
+                            </div>
+            
+                            <div class="stat-box">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Enterprise Clients</div>
+                                <div class="stat-description">Fortune 500 Companies</div>
+                            </div>
+                        </div>
+            
+                        <div class="kpi-section">
+                            <div class="kpi-title">Ut Et Voluptates Repudiandae</div>
+                            
+                            <div class="kpi-item">
+                                <div class="kpi-header">
+                                    <span class="kpi-label">Itaque Earum Rerum</span>
+                                    <span class="kpi-percentage">87%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 87%;"></div>
+                                </div>
+                            </div>
+            
+                            <div class="kpi-item">
+                                <div class="kpi-header">
+                                    <span class="kpi-label">Market Penetration</span>
+                                    <span class="kpi-percentage">65%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%;"></div>
+                                </div>
+                            </div>
+            
+                            <div class="kpi-item">
+                                <div class="kpi-header">
+                                    <span class="kpi-label">Customer Retention</span>
+                                    <span class="kpi-percentage">94%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 94%;"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Adoption Metrics -->
-                <div class="tech-card">
-                    <h3 class="text-xl font-bold text-light mb-6">Key Performance Indicators</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-light">Platform Adoption</span>
-                                <span class="text-cyan-400 font-bold">87%</span>
+            </div>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="content">
+                        <div class="header">
+                            <h1 class="title">Hic Tenetur A Sapiente</h1>
+                            <p class="subtitle">Delectus Aut Reiciendis Voluptatibus Maiores Alias Consequatur Aut Perferendis</p>
+                        </div>
+            
+                        <div class="challenges-grid">
+                            <div class="challenge-pair">
+                                <div class="challenge-box">
+                                    <div class="box-label challenge-label">Challenge</div>
+                                    <div class="box-title">Challenge: Lorem</div>
+                                    <p class="box-description">Sed Ut Perspiciatis Unde Omnis Iste Natus Error Sit Voluptatem</p>
+                                </div>
+                                <div class="solution-box">
+                                    <div class="box-label solution-label">Solution</div>
+                                    <div class="box-title">Solution: Ipsum Architecture</div>
+                                    <p class="box-description">Accusantium Doloremque Laudantium, Totam Rem Aperiam, Eaque Ipsa Quae Ab Illo</p>
+                                </div>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 87%;"></div>
+            
+                            <div class="challenge-pair">
+                                <div class="challenge-box">
+                                    <div class="box-label challenge-label">Challenge</div>
+                                    <div class="box-title">Challenge: Dolor</div>
+                                    <p class="box-description">Inventore Veritatis Et Quasi Architecto Beatae Vitae Dicta Sunt Explicabo</p>
+                                </div>
+                                <div class="solution-box">
+                                    <div class="box-label solution-label">Solution</div>
+                                    <div class="box-title">Solution: Sit Model</div>
+                                    <p class="box-description">Nemo Enim Ipsam Voluptatem Quia Voluptas Sit Aspernatur Aut Odit Aut Fugit</p>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-light">Market Penetration</span>
-                                <span class="text-cyan-400 font-bold">65%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-container">
+                    <div class="accent-line"></div>
+                    <div class="accent-shape"></div>
+                    <div class="content">
+                        <h1 class="title">Neque Porro Quisquam Est</h1>
+                        <p class="subtitle">Qui Dolorem Ipsum Quia Dolor Sit Amet Consectetur Adipisci Velit</p>
+            
+                        <div class="contact-section">
+                            <div class="contact-item">
+                                <span class="contact-label">E-mail</span>
+                                <div class="contact-value">lorem@ipsum.com</div>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 65%;"></div>
+            
+                            <div class="contact-item">
+                                <span class="contact-label">Telefone</span>
+                                <div class="contact-value">+1 (555) 987-6543</div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-light">Customer Retention</span>
-                                <span class="text-cyan-400 font-bold">94%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 94%;"></div>
+            
+                            <div class="contact-item">
+                                <span class="contact-label">Localização</span>
+                                <div class="contact-value">Lorem Ipsum, CA</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Slide 9: Challenges & Solutions -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-12 py-20">
-            <div class="max-w-5xl w-full">
-                <h2 class="text-5xl font-black mb-4 gradient-text">Challenges & Solutions</h2>
-                <p class="text-muted mb-12 text-lg">Addressing industry pain points with innovation</p>
-
-                <div class="grid grid-cols-2 gap-8">
-                    <!-- Challenge 1 -->
-                    <div>
-                        <div class="challenge-box">
-                            <p class="text-light font-bold mb-2">Challenge: Scalability</p>
-                            <p class="text-muted text-sm">Handling exponential data growth and user demands</p>
-                        </div>
-                        <div class="solution-box">
-                            <p class="text-light font-bold mb-2">✓ Solution: Distributed Architecture</p>
-                            <p class="text-muted text-sm">Microservices and horizontal scaling capabilities</p>
-                        </div>
-                    </div>
-
-                    <!-- Challenge 2 -->
-                    <div>
-                        <div class="challenge-box">
-                            <p class="text-light font-bold mb-2">Challenge: Security</p>
-                            <p class="text-muted text-sm">Protecting sensitive data from cyber threats</p>
-                        </div>
-                        <div class="solution-box">
-                            <p class="text-light font-bold mb-2">✓ Solution: Zero-Trust Security</p>
-                            <p class="text-muted text-sm">Multi-layer encryption and continuous monitoring</p>
-                        </div>
-                    </div>
-
-                    <!-- Challenge 3 -->
-                    <div>
-                        <div class="challenge-box">
-                            <p class="text-light font-bold mb-2">Challenge: Integration</p>
-                            <p class="text-muted text-sm">Seamless connectivity with legacy systems</p>
-                        </div>
-                        <div class="solution-box">
-                            <p class="text-light font-bold mb-2">✓ Solution: Universal APIs</p>
-                            <p class="text-muted text-sm">REST, GraphQL, and webhook support</p>
-                        </div>
-                    </div>
-
-                    <!-- Challenge 4 -->
-                    <div>
-                        <div class="challenge-box">
-                            <p class="text-light font-bold mb-2">Challenge: Compliance</p>
-                            <p class="text-muted text-sm">Meeting global regulatory requirements</p>
-                        </div>
-                        <div class="solution-box">
-                            <p class="text-light font-bold mb-2">✓ Solution: Compliance Framework</p>
-                            <p class="text-muted text-sm">GDPR, HIPAA, SOC2, ISO 27001 certified</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 10: Conclusion / Contact -->
-    <div class="slide-container">
-        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col items-center justify-center px-8 relative overflow-hidden">
-            <!-- Background Elements -->
-            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-
-            <div class="relative z-10 text-center max-w-3xl">
-                <h2 class="text-6xl font-black mb-6 gradient-text">Ready to Transform?</h2>
-                <p class="text-2xl text-gray-300 mb-12">
-                    Join thousands of companies leveraging our technology for competitive advantage
-                </p>
-
-                <div class="grid grid-cols-3 gap-8 mb-12">
-                    <div class="tech-card">
-                        <p class="text-muted text-sm mb-2">Email</p>
-                        <p class="text-light font-semibold">contact@tech.com</p>
-                    </div>
-                    <div class="tech-card">
-                        <p class="text-muted text-sm mb-2">Phone</p>
-                        <p class="text-light font-semibold">+1 (555) 123-4567</p>
-                    </div>
-                    <div class="tech-card">
-                        <p class="text-muted text-sm mb-2">Website</p>
-                        <p class="text-light font-semibold">www.tech.com</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-6 justify-center mb-12">
-                    <button class="button-primary">Start Free Trial</button>
-                    <button class="button-secondary">Schedule Demo</button>
-                </div>
-
-                <div class="flex justify-center gap-4">
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-lg flex items-center justify-center text-light hover:border-cyan-500/60 transition">f</a>
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-lg flex items-center justify-center text-light hover:border-cyan-500/60 transition">in</a>
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-lg flex items-center justify-center text-light hover:border-cyan-500/60 transition">𝕏</a>
-                </div>
-
-                <p class="text-gray-500 text-sm mt-12">© 2024 Tech Innovation Inc. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation Controls -->
-    <div class="slide-nav">
-        <button onclick="previousSlide()">← Previous</button>
-        <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
-        <button onclick="nextSlide()">Next →</button>
+        <!-- Navigation Buttons -->
+        <button id="prev-button" class="nav-button" disabled>&#10094; Prev</button>
+        <button id="next-button" class="nav-button">&#10095; Next</button>
     </div>
 
     <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide-container');
         const totalSlides = slides.length;
-        let isDarkMode = true;
 
-        document.getElementById('total-slides').textContent = totalSlides;
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
-            slides[currentSlide].classList.add('active');
-            document.getElementById('current-slide').textContent = currentSlide + 1;
+            // Update button states
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide === totalSlides - 1;
         }
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
+        function showNextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
         }
 
-        function previousSlide() {
-            showSlide(currentSlide - 1);
+        function showPrevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
         }
 
-        function toggleTheme() {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('light-mode');
-            const themeToggle = document.querySelector('.theme-toggle');
-            themeToggle.textContent = isDarkMode ? '🌙' : '☀️';
-        }
+        nextButton.addEventListener('click', showNextSlide);
+        prevButton.addEventListener('click', showPrevSlide);
 
         // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') previousSlide();
-            if (e.key === 't' || e.key === 'T') toggleTheme();
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                showNextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                showPrevSlide();
+            }
         });
 
-        // Initialize
-        showSlide(0);
+        // Initial call to set up the first slide and buttons
+        updateSlide();
     </script>
 </body>
 </html>
